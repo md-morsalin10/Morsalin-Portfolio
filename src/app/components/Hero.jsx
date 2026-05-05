@@ -8,6 +8,7 @@ import {
     useSpring,
 } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
 import image from '@/assets/Morsalin.png';
 
 
@@ -126,6 +127,8 @@ export default function Hero() {
     const typed = useTypewriter();
     const [mounted, setMounted] = useState(false);
     const [particleList, setParticleList] = useState([]);
+    const badgeRef = useRef(null);
+    const headingRef = useRef(null);
 
     /* Mouse-parallax for orbs */
     const mx = useMotionValue(0.5);
@@ -155,6 +158,23 @@ export default function Hero() {
         setParticleList(generatedParticles);
         setMounted(true); // সব ডেটা সেট হওয়ার পর মাউন্টেড ট্রু করা
     }, []);
+
+    useEffect(() => {
+        if (mounted) {
+            gsap.fromTo(
+                [badgeRef.current, headingRef.current],
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    delay: 0.1
+                }
+            );
+        }
+    }, [mounted]);
 
     if (!mounted) return <section className="relative min-h-screen bg-[#060412]" />;
 
@@ -205,7 +225,7 @@ export default function Hero() {
             <div className="relative z-10 max-w-3xl w-full text-center flex flex-col items-center">
 
                 {/* Status badge */}
-                <motion.div variants={fadeUp(0)} className="flex items-center gap-2.5 mb-8">
+                <div ref={badgeRef} className="flex items-center gap-2.5 mb-8 opacity-0">
                     <motion.span
                         className="w-2 h-2 rounded-full bg-green-400"
                         animate={{
@@ -223,7 +243,7 @@ export default function Hero() {
                     >
                         Available for work
                     </motion.span>
-                </motion.div>
+                </div>
 
                 {/* Avatar */}
                 <motion.div
@@ -288,9 +308,9 @@ export default function Hero() {
                 </motion.p>
 
                 {/* Headline */}
-                <motion.h1
-                    variants={fadeUp(0.18)}
-                    className="text-5xl md:text-[62px] font-extrabold leading-[1.08] tracking-tight text-[#f5f3ff] mb-2"
+                <h1
+                    ref={headingRef}
+                    className="text-5xl md:text-[62px] font-extrabold leading-[1.08] tracking-tight text-[#f5f3ff] mb-2 opacity-0"
                 >
                     Building scalable
                     <br />
@@ -311,7 +331,7 @@ export default function Hero() {
                             transition={{ duration: 0.75, repeat: Infinity }}
                         />
                     </span>
-                </motion.h1>
+                </h1>
 
                 {/* Animated SVG underline */}
                 <motion.div variants={fadeUp(0.24)} className="mb-7">

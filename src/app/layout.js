@@ -2,7 +2,7 @@ import { Preahvihear } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import SmoothScrolling from "./components/SmoothScrolling";
 
 
 const preahVihearFont = Preahvihear({
@@ -24,7 +24,9 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        {children}
+        <SmoothScrolling>
+          {children}
+        </SmoothScrolling>
         <Footer/>
       </body>
     </html>

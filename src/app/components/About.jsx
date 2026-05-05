@@ -214,7 +214,7 @@ export default function About() {
                         >
                             {stats.map((s, i) => (
                                 <StatBadge key={s.label} num={s.num} label={s.label} delay={0.3 + i * 0.1} />
-                            ))}a
+                            ))}
                         </motion.div>
                     </motion.div>
 

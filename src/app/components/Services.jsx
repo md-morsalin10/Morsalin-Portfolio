@@ -100,7 +100,7 @@ function ServiceCard({ service, index }) {
         >
             {/* Outer glow */}
             <motion.div
-                className="absolute -inset-[1px] rounded-3xl pointer-events-none"
+                className="absolute -inset-px rounded-3xl pointer-events-none"
                 animate={{ opacity: hovered ? 1 : 0 }}
                 transition={{ duration: 0.3 }}
                 style={{ background: `radial-gradient(circle at 50% 0%, ${service.glow}, transparent 70%)` }}
@@ -108,7 +108,7 @@ function ServiceCard({ service, index }) {
 
             {/* Card body */}
             <div
-                className={`relative h-full p-7 rounded-3xl border bg-gradient-to-br ${service.grad} backdrop-blur-xl overflow-hidden transition-colors duration-300`}
+                className={`relative h-full p-7 rounded-3xl border bg-linear-to-br ${service.grad} backdrop-blur-xl overflow-hidden transition-colors duration-300`}
                 style={{ borderColor: hovered ? service.border : 'rgba(255,255,255,0.06)' }}
             >
 
@@ -198,7 +198,7 @@ function ServiceCard({ service, index }) {
 
                 {/* Animated bottom bar */}
                 <motion.div
-                    className="absolute bottom-0 left-0 h-[2px] rounded-b-3xl"
+                    className="absolute bottom-0 left-0 h-0.5 rounded-b-3xl"
                     style={{ background: `linear-gradient(90deg, ${service.accent}, transparent)` }}
                     animate={{ width: hovered ? '100%' : '0%' }}
                     transition={{ duration: 0.55, ease: expo }}
@@ -215,14 +215,14 @@ export default function Services() {
 
             {/* Ambient orbs */}
             <motion.div
-                className="pointer-events-none absolute -top-10 right-0 w-[500px] h-[500px] rounded-full"
+                className="pointer-events-none absolute -top-10 right-0 w-125 h-125 rounded-full"
                 animate={{ scale: [1, 1.1, 1], opacity: [0.12, 0.2, 0.12] }}
                 transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
             >
                 <div className="w-full h-full rounded-full bg-[radial-gradient(circle,#7c3aed,transparent_65%)]" />
             </motion.div>
             <motion.div
-                className="pointer-events-none absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full"
+                className="pointer-events-none absolute bottom-0 -left-20 w-100 h-100 rounded-full"
                 animate={{ scale: [1, 1.15, 1], opacity: [0.08, 0.15, 0.08] }}
                 transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
             >
@@ -249,11 +249,11 @@ export default function Services() {
                 >
                     {/* Section label */}
                     <motion.div variants={fadeUp(0)} className="flex items-center justify-center gap-3 mb-5">
-                        <span className="h-px w-10 bg-gradient-to-r from-transparent to-violet-500/50" />
+                        <span className="h-px w-10 bg-linear-to-r from-transparent to-violet-500/50" />
                         <span className="font-mono text-[11px] tracking-[.18em] uppercase text-violet-400/70">
                             What I Do
                         </span>
-                        <span className="h-px w-10 bg-gradient-to-l from-transparent to-violet-500/50" />
+                        <span className="h-px w-10 bg-linear-to-l from-transparent to-violet-500/50" />
                     </motion.div>
 
                     <motion.h2
@@ -262,7 +262,7 @@ export default function Services() {
                     >
                         My Specialized{' '}
                         <motion.span
-                            className="bg-gradient-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
+                            className="bg-linear-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
                             style={{ backgroundSize: '200% 200%' }}
                             animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                             transition={{ duration: 5, repeat: Infinity }}
@@ -308,7 +308,7 @@ export default function Services() {
                         className="relative px-7 py-3 rounded-xl font-bold text-[14px] text-white overflow-hidden flex-shrink-0"
                     >
                         <motion.span
-                            className="absolute inset-0 bg-gradient-to-br from-violet-600 to-fuchsia-500"
+                            className="absolute inset-0 bg-linear-to-br from-violet-600 to-fuchsia-500"
                             animate={{ opacity: [1, 0.82, 1] }}
                             transition={{ duration: 3, repeat: Infinity }}
                         />
