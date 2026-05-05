@@ -47,7 +47,7 @@ const tagItem = {
 };
 
 /* ─── Typewriter ────────────────────────────────────────── */
-const WORDS = ['MERN Stack', 'Full-Stack', 'React & Node'];
+const WORDS = ['MERN Stack', 'Full-Stack', 'React & Next.Js', 'Node.Js & Express'];
 
 function useTypewriter(speed = 78, pause = 2000) {
     const [display, setDisplay] = useState('');
@@ -156,7 +156,7 @@ export default function Hero() {
         }));
 
         setParticleList(generatedParticles);
-        setMounted(true); // সব ডেটা সেট হওয়ার পর মাউন্টেড ট্রু করা
+        setMounted(true); 
     }, []);
 
     useEffect(() => {
@@ -269,7 +269,7 @@ export default function Hero() {
                         transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                     />
                     {/* Avatar image */}
-                    <div className="absolute inset-0.75 rounded-full bg-[#0f0b1e] overflow-hidden">
+                    <div className="absolute  inset-0.75 rounded-full bg-[#0f0b1e] overflow-hidden">
                         <Image
                             src={image}
                             alt="Morsalin"  
@@ -280,7 +280,7 @@ export default function Hero() {
 
                     {/* Greeting bubble */}
                     <motion.div
-                        className="absolute -top-3 -right-24 bg-[#0f0b1e]/95 border border-violet-500/30 text-violet-300 text-[12px] font-mono px-3.5 py-2 rounded-xl whitespace-nowrap z-20"
+                        className="absolute -top-6 -right-28 bg-[#0f0b1e]/95 border border-violet-500/30 text-violet-300 text-[12px] font-mono px-3.5 py-2 rounded-xl whitespace-nowrap z-20"
                         initial={{ opacity: 0, x: -16, scale: 0.82 }}
                         animate={{ opacity: 1, x: 0, scale: 1 }}
                         transition={{ type: 'spring', stiffness: 200, damping: 16, delay: 0.7 }}
@@ -310,7 +310,7 @@ export default function Hero() {
                 {/* Headline */}
                 <h1
                     ref={headingRef}
-                    className="text-5xl md:text-[62px] font-extrabold leading-[1.08] tracking-tight text-[#f5f3ff] mb-2 opacity-0"
+                    className="text-4xl md:text-[50px] font-extrabold leading-[1.08] tracking-tight text-[#f5f3ff] mb-2 opacity-0"
                 >
                     Building scalable
                     <br />

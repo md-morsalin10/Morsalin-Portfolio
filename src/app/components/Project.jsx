@@ -124,11 +124,7 @@ function ProjectCard({ project }) {
                         animate={{ scale: hovered ? 1.08 : 1 }}
                         transition={{ duration: 0.7, ease: expo }}
                     >
-                        <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover"
-                        />
+                        <Image src={project.image} alt={project.title} fill className="object-cover" unoptimized />
                     </motion.div>
 
                     {/* ID watermark */}
