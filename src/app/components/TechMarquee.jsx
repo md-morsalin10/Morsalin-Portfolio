@@ -50,12 +50,12 @@ function LogoChip({ tech }) {
         <motion.div
             whileHover={{ scale: 1.08, y: -4 }}
             transition={{ type: 'spring', stiffness: 280, damping: 18 }}
-            className="group flex-shrink-0 flex items-center gap-3 px-5 py-3 mx-2
+            className="group shrink-0 flex items-center gap-3 px-5 py-3 mx-2
                  rounded-2xl border border-white/6 bg-[#0c0818]/70
                  hover:border-white/18 hover:bg-white/4
                  backdrop-blur-sm cursor-default select-none"
         >
-            <div className="relative w-6 h-6 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all duration-300">
+            <div className="relative w-6 h-6 shrink-0 grayscale group-hover:grayscale-0 transition-all duration-300">
                 <Image
                     src={tech.url}
                     alt={tech.name}
@@ -70,7 +70,7 @@ function LogoChip({ tech }) {
                 {tech.name}
             </span>
             <motion.span
-                className="w-1.5 h-1.5 rounded-full flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="w-1.5 h-1.5 rounded-full shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: tech.color, boxShadow: `0 0 6px ${tech.color}` }}
             />
         </motion.div>
@@ -80,8 +80,8 @@ function LogoChip({ tech }) {
 function MarqueeRow({ items, duration = 38, reverse = false }) {
     return (
         <div className="relative flex overflow-hidden py-1.5">
-            <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none bg-gradient-to-r from-[#060412] to-transparent" />
-            <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none bg-gradient-to-l from-[#060412] to-transparent" />
+            <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none bg-linear-to-r from-[#060412] to-transparent" />
+            <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none bg-linear-to-l from-[#060412] to-transparent" />
 
             <motion.div
                 className="flex"
@@ -110,15 +110,15 @@ export default function TechMarquee() {
 
     if (!hasMounted) {
         return (
-            <section className="relative py-24 bg-[#060412] overflow-hidden min-h-[600px]" />
+            <section className="relative py-24 bg-[#060412] overflow-hidden min-h-150" />
         );
     }
 
     return (
-        <section className="relative py-24 bg-[#060412] overflow-hidden min-h-[600px]">
+        <section className="relative py-24 bg-[#060412] overflow-hidden min-h-150">
             {/* Ambient Glow & Grid */}
             <motion.div
-                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[250px] rounded-full"
+                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-62.5 rounded-full"
                 animate={{ opacity: [0.06, 0.13, 0.06], scale: [1, 1.08, 1] }}
                 transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
             >
@@ -140,15 +140,15 @@ export default function TechMarquee() {
                 className="text-center mb-12 px-6"
             >
                 <motion.div variants={fadeUp(0)} className="flex items-center justify-center gap-3 mb-4">
-                    <span className="h-px w-10 bg-gradient-to-r from-transparent to-violet-500/50" />
+                    <span className="h-px w-10 bg-linear-to-r from-transparent to-violet-500/50" />
                     <span className="font-mono text-[11px] tracking-[.18em] uppercase text-violet-400/70">Tech Stack</span>
-                    <span className="h-px w-10 bg-gradient-to-l from-transparent to-violet-500/50" />
+                    <span className="h-px w-10 bg-linear-to-l from-transparent to-violet-500/50" />
                 </motion.div>
 
                 <motion.h2 variants={fadeUp(0.06)} className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
                     Tools I{' '}
                     <motion.span
-                        className="bg-gradient-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
+                        className="bg-linear-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
                         animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                         transition={{ duration: 5, repeat: Infinity }}
                         style={{ backgroundSize: '200% 200%' }}
@@ -168,7 +168,7 @@ export default function TechMarquee() {
                 <MarqueeRow items={ROW2} duration={34} reverse={true} />
             </div>
 
-            {/* Stats strip - ২ বছরের মধ্যে অর্জিত দক্ষতা ও প্রজেক্ট সংখ্যা প্রতিফলিত করে */}
+          
             <motion.div
                 initial="hidden" whileInView="visible" viewport={{ once: true }}
                 variants={stagger(0.1)}
@@ -186,7 +186,7 @@ export default function TechMarquee() {
                         className="flex flex-col items-center gap-1.5 py-5 rounded-2xl border border-white/6 bg-white/3"
                     >
                         <motion.span
-                            className="text-2xl font-extrabold bg-gradient-to-br from-violet-300 to-fuchsia-400 bg-clip-text text-transparent"
+                            className="text-2xl font-extrabold bg-linear-to-br from-violet-300 to-fuchsia-400 bg-clip-text text-transparent"
                             initial={{ opacity: 0, scale: 0.5 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                         >

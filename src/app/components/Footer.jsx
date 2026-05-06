@@ -50,11 +50,11 @@ export default function Footer() {
         <footer className="relative bg-[#060412] overflow-hidden">
 
             {/* Top gradient divider */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-violet-500/40 to-transparent" />
 
             {/* Bottom ambient orb */}
             <motion.div
-                className="pointer-events-none absolute -bottom-20 left-1/2 -translate-x-1/2 w-[700px] h-[280px] rounded-full"
+                className="pointer-events-none absolute -bottom-20 left-1/2 -translate-x-1/2 w-175 h-70 rounded-full"
                 animate={{ opacity: [0.08, 0.16, 0.08], scale: [1, 1.06, 1] }}
                 transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
             >
@@ -63,7 +63,7 @@ export default function Footer() {
 
             {/* Side orb */}
             <motion.div
-                className="pointer-events-none absolute top-0 -left-24 w-[300px] h-[300px] rounded-full"
+                className="pointer-events-none absolute top-0 -left-24 w-75 h-75 rounded-full"
                 animate={{ opacity: [0.06, 0.12, 0.06] }}
                 transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
             >
@@ -89,9 +89,9 @@ export default function Footer() {
                     className="text-center mb-14"
                 >
                     <motion.div variants={fadeUp(0)} className="flex items-center justify-center gap-3 mb-4">
-                        <span className="h-px w-12 bg-gradient-to-r from-transparent to-violet-500/40" />
+                        <span className="h-px w-12 bg-linear-to-r from-transparent to-violet-500/40" />
                         <span className="font-mono text-[10px] tracking-[.2em] uppercase text-violet-400/50">Portfolio</span>
-                        <span className="h-px w-12 bg-gradient-to-l from-transparent to-violet-500/40" />
+                        <span className="h-px w-12 bg-linear-to-l from-transparent to-violet-500/40" />
                     </motion.div>
 
                     <motion.div variants={fadeUp(0.05)} className="flex items-baseline justify-center gap-1 mb-3">
@@ -143,7 +143,7 @@ export default function Footer() {
                             className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-green-500/20 bg-green-500/6 w-fit"
                         >
                             <motion.span
-                                className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0"
+                                className="w-2 h-2 rounded-full bg-green-400 shrink-0"
                                 animate={{ boxShadow: ['0 0 0 3px rgba(34,197,94,.2)', '0 0 0 7px rgba(34,197,94,.04)', '0 0 0 3px rgba(34,197,94,.2)'] }}
                                 transition={{ duration: 2, repeat: Infinity }}
                             />
@@ -184,7 +184,7 @@ export default function Footer() {
                                         whileHover={{ x: 5 }}
                                         transition={{ type: 'spring', stiffness: 300 }}
                                     >
-                                        <span className="w-1 h-1 rounded-full bg-violet-500/35 group-hover:bg-violet-400 transition-colors flex-shrink-0" />
+                                        <span className="w-1 h-1 rounded-full bg-violet-500/35 group-hover:bg-violet-400 transition-colors shrink-0" />
                                         {label}
                                     </motion.a>
                                 </motion.li>
@@ -215,7 +215,7 @@ export default function Footer() {
                                     transition={{ type: 'spring', stiffness: 280 }}
                                 >
                                     <motion.span
-                                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                                        className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
                                         style={{ background: `${color}15` }}
                                         whileHover={{ scale: 1.1, rotate: 5 }}
                                         transition={{ type: 'spring', stiffness: 300 }}
@@ -235,7 +235,7 @@ export default function Footer() {
                     whileInView={{ scaleX: 1, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.1, ease: expo }}
-                    className="h-px bg-gradient-to-r from-transparent via-violet-500/25 to-transparent mb-7 origin-center"
+                    className="h-px bg-linear-to-r from-transparent via-violet-500/25 to-transparent mb-7 origin-center"
                 />
 
                 {/* ── Bottom bar ── */}

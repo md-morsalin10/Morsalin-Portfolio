@@ -305,7 +305,7 @@ export default function Services() {
                     <motion.button
                         whileHover={{ scale: 1.04, y: -2 }}
                         whileTap={{ scale: 0.96 }}
-                        className="relative px-7 py-3 rounded-xl font-bold text-[14px] text-white overflow-hidden flex-shrink-0"
+                        className="relative px-7 py-3 rounded-xl font-bold text-[14px] text-white overflow-hidden shrink-0"
                     >
                         <motion.span
                             className="absolute inset-0 bg-linear-to-br from-violet-600 to-fuchsia-500"

@@ -90,7 +90,7 @@ function StatBadge({ num, label, delay }) {
             className="flex flex-col items-center gap-1"
         >
             <motion.span
-                className="text-3xl font-extrabold bg-gradient-to-br from-violet-300 to-fuchsia-400 bg-clip-text text-transparent"
+                className="text-3xl font-extrabold bg-linear-to-br from-violet-300 to-fuchsia-400 bg-clip-text text-transparent"
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 14, delay }}
@@ -110,14 +110,14 @@ export default function About() {
 
             {/* Ambient orbs */}
             <motion.div
-                className="pointer-events-none absolute top-1/4 -left-40 w-[480px] h-[480px] rounded-full"
+                className="pointer-events-none absolute top-1/4 -left-40 w-120 h-120 rounded-full"
                 animate={{ scale: [1, 1.1, 1], opacity: [0.18, 0.28, 0.18] }}
                 transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
             >
                 <div className="w-full h-full rounded-full bg-[radial-gradient(circle,#5b21b6,transparent_65%)]" />
             </motion.div>
             <motion.div
-                className="pointer-events-none absolute bottom-0 right-0 w-[360px] h-[360px] rounded-full"
+                className="pointer-events-none absolute bottom-0 right-0 w-90 h-90 rounded-full"
                 animate={{ scale: [1, 1.15, 1], opacity: [0.14, 0.24, 0.14] }}
                 transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
             >
@@ -142,7 +142,7 @@ export default function About() {
                     variants={fadeUp(0)}
                     className="flex items-center gap-3 mb-16"
                 >
-                    <span className="h-px flex-1 max-w-[48px] bg-gradient-to-r from-transparent to-violet-500/50" />
+                    <span className="h-px flex-1 max-w-12 bg-linear-to-r from-transparent to-violet-500/50" />
                     <span className="font-mono text-[11px] tracking-[.18em] uppercase text-violet-400/70">About Me</span>
                     <span className="h-px w-8 bg-violet-500/30" />
                 </motion.div>
@@ -152,7 +152,7 @@ export default function About() {
 
                     {/* ── Left: Avatar ── */}
                     <motion.div
-                        className="w-full lg:w-auto flex-shrink-0 flex flex-col items-center gap-8"
+                        className="w-full lg:w-auto shrink-0 flex flex-col items-center gap-8"
                         initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
                         variants={stagger(0)}
                     >
@@ -163,7 +163,7 @@ export default function About() {
                                 <div className="absolute inset-0 rounded-3xl bg-violet-500/15 blur-[50px]" />
                                 {/* Spinning border */}
                                 <motion.div
-                                    className="absolute inset-[-3px] rounded-3xl"
+                                    className="absolute -inset-0.75 rounded-3xl"
                                     style={{
                                         background: 'conic-gradient(from 0deg,#7c3aed,#a855f7,#c084fc,transparent,#7c3aed)',
                                     }}
@@ -179,7 +179,7 @@ export default function About() {
                                         fill
                                         className="object-cover" />
                                     {/* Overlay gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#060412]/70 via-transparent to-transparent" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-[#060412]/70 via-transparent to-transparent" />
                                 </div>
 
                                 {/* Floating badge */}
@@ -234,7 +234,7 @@ export default function About() {
                             <br className="hidden md:block" />
                             with{' '}
                             <motion.span
-                                className="bg-gradient-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
+                                className="bg-linear-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
                                 animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                                 transition={{ duration: 5, repeat: Infinity }}
                                 style={{ backgroundSize: '200% 200%' }}
@@ -297,7 +297,7 @@ export default function About() {
                                         <motion.span
                                             className="text-lg"
                                             animate={{ rotate: [0, 8, -8, 0] }}
-                                            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: Math.random() * 2 }}
+                                            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay:  2 }}
                                         >
                                             {c.icon}
                                         </motion.span>
@@ -316,7 +316,7 @@ export default function About() {
                                 className="relative px-7 py-3 rounded-xl font-bold text-[14px] text-white overflow-hidden"
                             >
                                 <motion.span
-                                    className="absolute inset-0 bg-gradient-to-br from-violet-600 to-fuchsia-500"
+                                    className="absolute inset-0 bg-linear-to-br from-violet-600 to-fuchsia-500"
                                     animate={{ opacity: [1, 0.82, 1] }}
                                     transition={{ duration: 3, repeat: Infinity }}
                                 />

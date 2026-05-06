@@ -145,7 +145,7 @@ export default function Hero() {
 
     /* Particles */
     useEffect(() => {
-        // মাউন্ট হওয়ার পর পার্টিকেল জেনারেট করা
+        
         const generatedParticles = Array.from({ length: 20 }, (_, i) => ({
             id: i,
             x: Math.random() * 100,
@@ -155,6 +155,7 @@ export default function Hero() {
             delay: Math.random() * 5,
         }));
 
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setParticleList(generatedParticles);
         setMounted(true); 
     }, []);
@@ -201,7 +202,7 @@ export default function Hero() {
             {/* Orb 2 */}
             <motion.div
                 style={{ x: o2x, y: o2y }}
-                className="pointer-events-none absolute -bottom-20 -right-28 w-[440px] h-[440px] rounded-full"
+                className="pointer-events-none absolute -bottom-20 -right-28 w-110 h-110 rounded-full"
                 animate={{ scale: [1, 1.14, 1], opacity: [0.2, 0.32, 0.2] }}
                 transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
             >
@@ -269,7 +270,7 @@ export default function Hero() {
                         transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                     />
                     {/* Avatar image */}
-                    <div className="absolute  inset-0.75 rounded-full bg-[#0f0b1e] overflow-hidden">
+                    <div className="absolute inset-0.75 rounded-full bg-[#0f0b1e] overflow-hidden">
                         <Image
                             src={image}
                             alt="Morsalin"  

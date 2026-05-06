@@ -98,14 +98,14 @@ export default function Contact() {
 
             {/* Ambient orbs */}
             <motion.div
-                className="pointer-events-none absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full"
+                className="pointer-events-none absolute top-1/4 -left-32 w-125 h-125 rounded-full"
                 animate={{ scale: [1, 1.1, 1], opacity: [0.14, 0.22, 0.14] }}
                 transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
             >
                 <div className="w-full h-full rounded-full bg-[radial-gradient(circle,#5b21b6,transparent_65%)]" />
             </motion.div>
             <motion.div
-                className="pointer-events-none absolute bottom-0 -right-20 w-[380px] h-[380px] rounded-full"
+                className="pointer-events-none absolute bottom-0 -right-20 w-95 h-95 rounded-full"
                 animate={{ scale: [1, 1.15, 1], opacity: [0.1, 0.18, 0.1] }}
                 transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
             >
@@ -131,9 +131,9 @@ export default function Contact() {
                     className="text-center mb-16"
                 >
                     <motion.div variants={fadeUp(0)} className="flex items-center justify-center gap-3 mb-5">
-                        <span className="h-px w-10 bg-gradient-to-r from-transparent to-violet-500/50" />
+                        <span className="h-px w-10 bg-linear-to-r from-transparent to-violet-500/50" />
                         <span className="font-mono text-[11px] tracking-[.18em] uppercase text-violet-400/70">Contact</span>
-                        <span className="h-px w-10 bg-gradient-to-l from-transparent to-violet-500/50" />
+                        <span className="h-px w-10 bg-linear-to-l from-transparent to-violet-500/50" />
                     </motion.div>
 
                     <motion.h2
@@ -142,7 +142,7 @@ export default function Contact() {
                     >
                         Get In{' '}
                         <motion.span
-                            className="bg-gradient-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
+                            className="bg-linear-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
                             style={{ backgroundSize: '200% 200%' }}
                             animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                             transition={{ duration: 5, repeat: Infinity }}
@@ -174,7 +174,7 @@ export default function Contact() {
                             className="relative p-7 rounded-3xl border border-white/6 bg-[#0c0818] overflow-hidden flex-1"
                         >
                             {/* Top accent */}
-                            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-violet-600 via-fuchsia-500 to-transparent" />
+                            <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-violet-600 via-fuchsia-500 to-transparent" />
 
                             <p className="font-mono text-[10px] tracking-[.18em] uppercase text-violet-400/60 mb-5">
                                 Contact Info
@@ -190,7 +190,7 @@ export default function Contact() {
                                         className="flex items-center gap-4 group"
                                     >
                                         <motion.div
-                                            className="w-10 h-10 rounded-xl flex items-center justify-center border flex-shrink-0"
+                                            className="w-10 h-10 rounded-xl flex items-center justify-center border shrink-0"
                                             style={{ borderColor: `${accent}30`, background: `${accent}10` }}
                                             whileHover={{ scale: 1.1, rotate: 5 }}
                                             transition={{ type: 'spring', stiffness: 300 }}
@@ -233,7 +233,7 @@ export default function Contact() {
                             className="p-5 rounded-2xl border border-white/6 bg-[#0c0818] flex items-center gap-4"
                         >
                             <motion.div
-                                className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/25 flex items-center justify-center flex-shrink-0"
+                                className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/25 flex items-center justify-center shrink-0"
                             >
                                 <motion.span
                                     className="w-2.5 h-2.5 rounded-full bg-green-400"
@@ -255,7 +255,7 @@ export default function Contact() {
                         className="lg:col-span-3 relative p-7 md:p-9 rounded-3xl border border-white/6 bg-[#0c0818] overflow-hidden"
                     >
                         {/* Top accent */}
-                        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500 to-fuchsia-500" />
+                        <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-violet-500 to-fuchsia-500" />
 
                         <motion.p variants={fadeUp(0)} className="font-mono text-[10px] tracking-[.18em] uppercase text-violet-400/60 mb-6">
                             Send a Message
@@ -317,7 +317,7 @@ export default function Contact() {
                                             className="relative w-full py-4 rounded-xl font-bold text-[14px] text-white overflow-hidden disabled:cursor-not-allowed"
                                         >
                                             <motion.span
-                                                className="absolute inset-0 bg-gradient-to-br from-violet-600 to-fuchsia-500"
+                                                className="absolute inset-0 bg-linear-to-br from-violet-600 to-fuchsia-500"
                                                 animate={{ opacity: sending ? 0.6 : [1, 0.82, 1] }}
                                                 transition={{ duration: 3, repeat: sending ? 0 : Infinity }}
                                             />

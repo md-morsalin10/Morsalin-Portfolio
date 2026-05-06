@@ -149,7 +149,7 @@ function ProjectCard({ project }) {
                     </motion.span>
 
                     {/* Bottom fade */}
-                    <div className="absolute bottom-0 left-0 right-0 h-16 z-10 bg-gradient-to-t from-[#0c0818] to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 h-16 z-10 bg-linear-to-t from-[#0c0818] to-transparent" />
                 </div>
 
                 {/* ── Content ── */}
@@ -221,7 +221,7 @@ function ProjectCard({ project }) {
 
                 {/* Animated bottom bar */}
                 <motion.div
-                    className="absolute bottom-0 left-0 h-[2px]"
+                    className="absolute bottom-0 left-0 h-0.5"
                     style={{ background: `linear-gradient(90deg, ${project.accent}, transparent)` }}
                     animate={{ width: hovered ? '100%' : '0%' }}
                     transition={{ duration: 0.5, ease: expo }}
@@ -238,14 +238,14 @@ export default function Projects() {
 
             {/* Ambient orbs */}
             <motion.div
-                className="pointer-events-none absolute top-1/3 -right-32 w-[480px] h-[480px] rounded-full"
+                className="pointer-events-none absolute top-1/3 -right-32 w-120 h-120 rounded-full"
                 animate={{ scale: [1, 1.1, 1], opacity: [0.12, 0.2, 0.12] }}
                 transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
             >
                 <div className="w-full h-full rounded-full bg-[radial-gradient(circle,#7c3aed,transparent_65%)]" />
             </motion.div>
             <motion.div
-                className="pointer-events-none absolute bottom-0 -left-16 w-[360px] h-[360px] rounded-full"
+                className="pointer-events-none absolute bottom-0 -left-16 w-90 h-90 rounded-full"
                 animate={{ scale: [1, 1.12, 1], opacity: [0.08, 0.16, 0.08] }}
                 transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
             >
@@ -273,7 +273,7 @@ export default function Projects() {
                     <div>
                         {/* Section label */}
                         <motion.div variants={fadeUp(0)} className="flex items-center gap-3 mb-4">
-                            <span className="h-px w-10 bg-gradient-to-r from-transparent to-violet-500/50" />
+                            <span className="h-px w-10 bg-linear-to-r from-transparent to-violet-500/50" />
                             <span className="font-mono text-[11px] tracking-[.18em] uppercase text-violet-400/70">Featured Works</span>
                         </motion.div>
 
@@ -283,7 +283,7 @@ export default function Projects() {
                         >
                             Selected{' '}
                             <motion.span
-                                className="bg-gradient-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
+                                className="bg-linear-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
                                 style={{ backgroundSize: '200% 200%' }}
                                 animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                                 transition={{ duration: 5, repeat: Infinity }}

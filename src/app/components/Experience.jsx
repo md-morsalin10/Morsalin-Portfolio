@@ -104,14 +104,14 @@ function TimelineItem({ item, index, isLast }) {
         <div ref={ref} className="relative flex gap-6 md:gap-10">
 
             {/* ── Spine column ── */}
-            <div className="flex flex-col items-center flex-shrink-0 w-10">
+            <div className="flex flex-col items-center shrink-0 w-10">
 
                 {/* Dot */}
                 <motion.div
                     initial={{ scale: 0, opacity: 0 }}
                     animate={inView ? { scale: 1, opacity: 1 } : {}}
                     transition={{ type: 'spring', stiffness: 260, damping: 18, delay: index * 0.15 }}
-                    className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center border-2 flex-shrink-0"
+                    className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center border-2 shrink-0"
                     style={{ borderColor: item.accent, background: '#060412' }}
                 >
                     {/* Pulse ring */}
@@ -160,7 +160,7 @@ function TimelineItem({ item, index, isLast }) {
                     >
                         {/* Top accent line */}
                         <motion.div
-                            className="absolute top-0 left-0 h-[2px] rounded-tl-2xl"
+                            className="absolute top-0 left-0 h-0.5 rounded-tl-2xl"
                             style={{ background: `linear-gradient(90deg, ${item.accent}, transparent)` }}
                             initial={{ width: '0%' }}
                             animate={inView ? { width: '100%' } : {}}
@@ -242,14 +242,14 @@ export default function Experience() {
 
             {/* Ambient orbs */}
             <motion.div
-                className="pointer-events-none absolute top-1/4 -right-32 w-[420px] h-[420px] rounded-full"
+                className="pointer-events-none absolute top-1/4 -right-32 w-105 h-105 rounded-full"
                 animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.18, 0.1] }}
                 transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
             >
                 <div className="w-full h-full rounded-full bg-[radial-gradient(circle,#7c3aed,transparent_65%)]" />
             </motion.div>
             <motion.div
-                className="pointer-events-none absolute bottom-1/4 -left-20 w-[300px] h-[300px] rounded-full"
+                className="pointer-events-none absolute bottom-1/4 -left-20 w-75 h-75 rounded-full"
                 animate={{ scale: [1, 1.15, 1], opacity: [0.08, 0.15, 0.08] }}
                 transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
             >
@@ -275,9 +275,9 @@ export default function Experience() {
                     className="text-center mb-18"
                 >
                     <motion.div variants={fadeUp(0)} className="flex items-center justify-center gap-3 mb-5">
-                        <span className="h-px w-10 bg-gradient-to-r from-transparent to-violet-500/50" />
+                        <span className="h-px w-10 bg-linear-to-r from-transparent to-violet-500/50" />
                         <span className="font-mono text-[11px] tracking-[.18em] uppercase text-violet-400/70">My Journey</span>
-                        <span className="h-px w-10 bg-gradient-to-l from-transparent to-violet-500/50" />
+                        <span className="h-px w-10 bg-linear-to-l from-transparent to-violet-500/50" />
                     </motion.div>
 
                     <motion.h2
@@ -286,7 +286,7 @@ export default function Experience() {
                     >
                         Experience &{' '}
                         <motion.span
-                            className="bg-gradient-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
+                            className="bg-linear-to-br from-violet-400 to-fuchsia-500 bg-clip-text text-transparent"
                             style={{ backgroundSize: '200% 200%' }}
                             animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                             transition={{ duration: 5, repeat: Infinity }}
