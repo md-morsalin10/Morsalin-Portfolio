@@ -6,11 +6,13 @@ import About from "./components/About";
 import Projects from "./components/Project";
 import Contact from "./components/Contact";
 import Experience from "./components/Experience";
+import TechMarquee from "./components/TechMarquee";
 
 export default function Home() {
   return (
     <div>
       <Hero />
+      <TechMarquee/>
       <About/>
       <Experience/>
       <Services />

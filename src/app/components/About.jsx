@@ -173,11 +173,11 @@ export default function About() {
                                 {/* Image */}
                                 <div className="relative  z-10 w-full h-full rounded-3xl overflow-hidden bg-[#0f0b1e] border border-violet-500/10">
                                     <Image
-                                     src={image} 
-                                     alt="Morsalin" 
-                                     priority
-                                     fill 
-                                     className="object-cover" />
+                                        src={image}
+                                        alt="Morsalin"
+                                        priority
+                                        fill
+                                        className="object-cover" />
                                     {/* Overlay gradient */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#060412]/70 via-transparent to-transparent" />
                                 </div>
