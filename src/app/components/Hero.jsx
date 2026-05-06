@@ -312,7 +312,7 @@ export default function Hero() {
                 {/* Headline */}
                 <h1
                     ref={headingRef}
-                    className="text-4xl md:text-[50px] font-extrabold leading-[1.08] tracking-tight text-[#f5f3ff] mb-2 opacity-0"
+                    className="text-3xl md:text-[50px] font-extrabold leading-[1.08] tracking-tight text-[#f5f3ff] mb-2 opacity-0"
                 >
                     Building scalable
                     <br />
