@@ -133,7 +133,13 @@ export default function Navbar() {
                             transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                         />
                         <div className="relative w-10 h-10 rounded-full overflow-hidden border border-violet-500/30">
-                            <Image src={logo} alt="Logo" fill className="object-cover" />
+                            <Image
+                             src={logo} 
+                             priority
+                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                             alt="Logo" 
+                             fill
+                              className="object-cover" />
                         </div>
                     </motion.div>
 

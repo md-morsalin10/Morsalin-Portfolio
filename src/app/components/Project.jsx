@@ -9,35 +9,35 @@ const projects = [
     {
         id: '01',
         title: 'SkillSphere Learning',
-        desc: 'A comprehensive online education platform with course management, progress tracking, and interactive learning features.',
+        desc: 'SkillSphere is a modern, high-performance online learning platform designed to empower students with new skills and career-ready knowledge. Built with a focus on premium UI/UX and seamless functionality, it provides an organized learning path for the next generation of tech professionals.',
         tech: ['Next.js', 'MongoDB', 'Framer Motion'],
-        link: '#',
-        live: '#',
-        image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1000&auto=format&fit=crop',
+        link: 'https://github.com/md-morsalin10/A8-SkillSphere-Online-Learning-Platform',
+        live: 'https://a8-skill-sphere-online-learning-pla.vercel.app/',
+        image: 'https://i.ibb.co.com/XxxDD72j/Screenshot-2026-05-04-153523.png',
         accent: '#a855f7',
         tag: 'EdTech',
     },
     {
         id: '02',
-        title: 'GitHub Issues Tracker',
-        desc: 'A productivity dashboard to manage and track GitHub issues efficiently with real-time sync and clean UI.',
+        title: 'Apps hub- Productive Apps',
+        desc: 'Explore a diverse collection of innovative web applications and tools designed to simplify digital tasks and enhance user experiences. Built with modern technologies, this hub showcases the creative potential and technical expertise of developer Md. Morsalin.',
         tech: ['React', 'Tailwind CSS', 'GitHub API'],
         link: '#',
-        live: '#',
-        image: 'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=1000&auto=format&fit=crop',
+        live: 'https://morsalin-apps-hub.netlify.app/',
+        image: 'https://i.ibb.co.com/S4Tqj8kp/Screenshot-2026-05-06-154417.png',
         accent: '#3b82f6',
         tag: 'DevTool',
     },
     {
         id: '03',
-        title: 'Dragon News Portal',
-        desc: 'A modern news application with Firebase authentication and real-time news updates with a smooth reading experience.',
-        tech: ['React', 'Firebase', 'Node.js'],
-        link: '#',
-        live: '#',
-        image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop',
+        title: 'KeenKeeper- Social App',
+        desc: 'KeenKeeper is a modern web application designed to help users maintain meaningful connections with their friends and family. By tracking interactions and setting communication goals, it ensures you never lose touch with the people who matter most.',
+        tech: ['React', 'Tailwind', 'React Dom'],
+        link: 'https://github.com/md-morsalin10/A07-kin-keeper-Keep-Your-Friendships-Alive',
+        live: 'https://a7-keen-keeper-friends.netlify.app/',
+        image: 'https://i.ibb.co.com/gZC69vRT/Screenshot-2026-05-06-153003.png',
         accent: '#22c55e',
-        tag: 'News App',
+        tag: 'Social App',
     },
 ];
 
@@ -120,11 +120,18 @@ function ProjectCard({ project }) {
 
                     {/* Image zoom */}
                     <motion.div
-                        className="w-full h-full"
+                        className="w-full h-full relative"
                         animate={{ scale: hovered ? 1.08 : 1 }}
                         transition={{ duration: 0.7, ease: expo }}
                     >
-                        <Image src={project.image} alt={project.title} fill className="object-cover" unoptimized />
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            priority
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover"
+                            unoptimized />
                     </motion.div>
 
                     {/* ID watermark */}
