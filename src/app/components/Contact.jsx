@@ -7,15 +7,15 @@ import { FaLinkedin, FaGithub, FaFacebook } from 'react-icons/fa';
 
 /* ─── Data ─────────────────────────────────────────────── */
 const INFO = [
-    { icon: MdEmail, label: 'Email', val: 'morsalin@email.com', href: 'mailto:morsalin@email.com', accent: '#a855f7' },
-    { icon: MdPhone, label: 'Phone', val: '+880 1XXX XXXXXX', href: 'tel:+8801XXXXXXXXX', accent: '#22c55e' },
-    { icon: MdLocationOn, label: 'Location', val: 'Dinajpur, Bangladesh', href: '#', accent: '#3b82f6' },
+    { icon: MdEmail, label: 'Email', val: 'morsalinafsan501921@gamil.com', href: 'mailto:morsalinafsan501921@gamil.com', accent: '#a855f7' },
+    { icon: MdPhone, label: 'Phone', val: '+880 1842007859', href: 'tel:+8801842007859', accent: '#22c55e' },
+    { icon: MdLocationOn, label: 'Location', val: 'Rangpur, Bangladesh', href: '#', accent: '#3b82f6' },
 ];
 
 const SOCIALS = [
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn', color: '#0a66c2' },
-    { icon: FaGithub, href: '#', label: 'GitHub', color: '#e2e8f0' },
-    { icon: FaFacebook, href: '#', label: 'Facebook', color: '#1877f2' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/md-morsalin10/', label: 'LinkedIn', color: '#0a66c2' },
+    { icon: FaGithub, href: 'https://github.com/md-morsalin10', label: 'GitHub', color: '#e2e8f0' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/mohammad.morsalin.335910', label: 'Facebook', color: '#1877f2' },
 ];
 
 /* ─── Easing ────────────────────────────────────────────── */

@@ -16,13 +16,13 @@ const TIMELINE = [
         status: 'active',
     },
     {
-        year: '2025',
+        year: '2024',
         title: 'Diploma in Engineering',
         organization: 'Dinajpur Polytechnic Institute',
         description: 'Completed graduation with a focus on core engineering principles, technical development, and problem-solving fundamentals.',
         icon: '🎓',
         accent: '#3b82f6',
-        tags: ['Engineering', 'Mathematics', 'Physics'],
+        tags: ['Engineering', 'Computer Science', 'CST'],
         status: 'done',
     },
     {
