@@ -18,6 +18,7 @@ const techStack = [
     { name: 'Express.js', dot: '#f0db4f' },
     { name: 'React', dot: '#61dafb' },
     { name: 'Node.js', dot: '#83cd29' },
+    { name: 'Next.js', dot: '#4bb360' },
     { name: 'JavaScript', dot: '#f7df1e' },
 ];
 
@@ -145,7 +146,7 @@ export default function Hero() {
 
     /* Particles */
     useEffect(() => {
-        
+
         const generatedParticles = Array.from({ length: 20 }, (_, i) => ({
             id: i,
             x: Math.random() * 100,
@@ -157,7 +158,7 @@ export default function Hero() {
 
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setParticleList(generatedParticles);
-        setMounted(true); 
+        setMounted(true);
     }, []);
 
     useEffect(() => {
@@ -273,7 +274,7 @@ export default function Hero() {
                     <div className="absolute inset-0.75 rounded-full bg-[#0f0b1e] overflow-hidden">
                         <Image
                             src={image}
-                            alt="Morsalin"  
+                            alt="Morsalin"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             fill
                             priority

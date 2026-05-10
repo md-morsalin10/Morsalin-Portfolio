@@ -241,7 +241,7 @@ function ProjectCard({ project }) {
 /* ─── Main ──────────────────────────────────────────────── */
 export default function Projects() {
     return (
-        <section className="relative py-28 px-6 bg-[#060412] overflow-hidden">
+        <section id='projects' className="relative py-28 px-6 bg-[#060412] overflow-hidden">
 
             {/* Ambient orbs */}
             <motion.div

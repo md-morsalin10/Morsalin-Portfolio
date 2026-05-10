@@ -94,7 +94,7 @@ export default function Contact() {
     };
 
     return (
-        <section className="relative min-h-screen py-28 px-6 bg-[#060412] overflow-hidden flex items-center">
+        <section id='contact' className="relative min-h-screen py-28 px-6 bg-[#060412] overflow-hidden flex items-center">
 
             {/* Ambient orbs */}
             <motion.div
