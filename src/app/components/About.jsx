@@ -7,7 +7,7 @@ import image from '@/assets/Morsalin.png';
 
 /* ─── Data ─────────────────────────────────────────────── */
 const stats = [
-    { num: '15+', label: 'Projects Built' },
+    { num: '10+', label: 'Projects Built' },
     { num: '1yr+', label: 'Experience' },
     { num: '100%', label: 'Client Focused' },
 ];
