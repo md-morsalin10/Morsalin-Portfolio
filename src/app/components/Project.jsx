@@ -61,7 +61,7 @@ const ALL_PROJECTS = [
         tech: ['React', 'JavaScript', 'Tailwind'],
         link: 'https://github.com/md-morsalin10/Book-Vipe-project',
         live: 'https://book-vipe-morsalin.netlify.app/',
-        image: 'https://i.ibb.co.com/PGzcZvHs/bookvipe.png  ',
+        image: 'https://i.ibb.co.com/PGzcZvHs/bookvipe.png',
         accent: '#eab308',
         tag: 'Book Shop',
     },

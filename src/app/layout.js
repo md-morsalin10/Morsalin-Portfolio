@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SmoothScrollProvider from './provider/SmoothScrolling';
+import CustomCursor from './components/CustomCursor';
 
 
 /* ── Fonts ─────────────────────────────────────────────────
@@ -54,7 +55,9 @@ export default function RootLayout({ children }) {
         <SmoothScrollProvider>
           <Navbar />
           <main>
+            <CustomCursor />
             {children}
+
           </main>
           <Footer />
         </SmoothScrollProvider>
