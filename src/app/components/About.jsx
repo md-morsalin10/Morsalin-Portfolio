@@ -100,14 +100,11 @@ function StatBadge({ num, label, delay }) {
 /* ─── Main ───────────────────────────────────────────────── */
 export default function About() {
   /* ✅ CV Download handler */
-  const handleDownloadCV = () => {
-    // PDF টা /public/cv/ ফোল্ডারে রাখো এই নামে
-    const link = document.createElement('a');
-    link.href     = '/cv/Morsalin-Resume.pdf';
-    link.download = 'Md-Morsalin-Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+ const handleDownloadCV = () => {
+    window.open(
+      'https://drive.google.com/file/d/1Pl1ge71_54S5Q1Fmm-vPFRVdvhhRIraI/view',
+      '_blank'
+    );
   };
 
   return (
