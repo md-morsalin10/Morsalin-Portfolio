@@ -39,7 +39,7 @@ const itemVariant = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: expo } },
 };
 
-/* ─── Animated Input ────────────────────────────────────── */
+
 function Field({ label, type = 'text', rows, placeholder }) {
     const [focused, setFocused] = useState(false);
     const [filled, setFilled] = useState(false);
