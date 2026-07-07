@@ -10,7 +10,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import image from '@/assets/Morsalin.png';
-
+import MeshBackground from './MeshBackground'; // ← নতুন import
 
 /* ─── Data ─────────────────────────────────────────────── */
 const techStack = [
@@ -47,8 +47,17 @@ const tagItem = {
     },
 };
 
-/* ─── Typewriter ────────────────────────────────────────── */
-const WORDS = ['MERN Stack', 'Full-Stack', 'React & Next.Js', 'Node.Js & Express'];
+/* ─── Typewriter ─────────────────────────────────────────
+   আপনার original hook রাখলাম হুবহু,
+   শুধু WORDS-এ নতুন role যোগ করলাম
+   ─────────────────────────────────────────────────────── */
+const WORDS = [
+    'MERN Stack',
+    'Full-Stack',
+    'React & Next.js',
+    'Node.js & Express',
+    'Frontend',          // ← নতুন
+];
 
 function useTypewriter(speed = 78, pause = 2000) {
     const [display, setDisplay] = useState('');
@@ -123,7 +132,9 @@ function MagBtn({ children, className }) {
     );
 }
 
-/* ─── Hero ──────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   Hero
+   ═══════════════════════════════════════════════════════════ */
 export default function Hero() {
     const typed = useTypewriter();
     const [mounted, setMounted] = useState(false);
@@ -144,9 +155,7 @@ export default function Hero() {
         my.set(e.clientY / window.innerHeight);
     };
 
-    /* Particles */
     useEffect(() => {
-
         const generatedParticles = Array.from({ length: 20 }, (_, i) => ({
             id: i,
             x: Math.random() * 100,
@@ -155,8 +164,6 @@ export default function Hero() {
             dur: Math.random() * 4 + 3,
             delay: Math.random() * 5,
         }));
-
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setParticleList(generatedParticles);
         setMounted(true);
     }, []);
@@ -166,14 +173,7 @@ export default function Hero() {
             gsap.fromTo(
                 [badgeRef.current, headingRef.current],
                 { opacity: 0, y: 50 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    stagger: 0.2,
-                    ease: "power3.out",
-                    delay: 0.1
-                }
+                { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out', delay: 0.1 }
             );
         }
     }, [mounted]);
@@ -187,6 +187,9 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
         >
+            {/* ── NEW: Animated mesh canvas (সবার নিচে) ── */}
+            <MeshBackground />
+
             {/* Particles */}
             {particleList.map(p => <Particle key={p.id} {...p} />)}
 
@@ -220,6 +223,7 @@ export default function Hero() {
                     backgroundImage:
                         'linear-gradient(rgba(139,92,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.04) 1px,transparent 1px)',
                     backgroundSize: '60px 60px',
+                    zIndex: 1,
                 }}
             />
 
@@ -278,7 +282,8 @@ export default function Hero() {
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             fill
                             priority
-                            className="object-cover" />
+                            className="object-cover"
+                        />
                     </div>
 
                     {/* Greeting bubble */}
@@ -327,11 +332,18 @@ export default function Hero() {
                         >
                             {typed}
                         </motion.span>
-                        {/* blinking cursor */}
+
+                        {/* ── NEW: Improved blinking cursor ── */}
                         <motion.span
-                            className="inline-block w-0.75 h-[0.85em] bg-violet-400 ml-1 mb-1 align-bottom rounded-sm"
-                            animate={{ opacity: [1, 0, 1] }}
-                            transition={{ duration: 0.75, repeat: Infinity }}
+                            className="inline-block w-[3px] bg-violet-400 ml-1 mb-1 align-bottom rounded-sm"
+                            style={{ height: '0.85em' }}
+                            animate={{ opacity: [1, 1, 0, 0] }}
+                            transition={{
+                                duration: 0.9,
+                                repeat: Infinity,
+                                times: [0, 0.45, 0.45, 1], // typing এর সময় solid থাকে, pause এ blink করে
+                                ease: 'linear',
+                            }}
                         />
                     </span>
                 </h1>
@@ -369,7 +381,7 @@ export default function Hero() {
                     . Turning complex business requirements into elegant, scalable code solutions.
                 </motion.p>
 
-                {/* Tech tags — stagger */}
+                {/* Tech tags */}
                 <motion.div
                     variants={staggerWrap}
                     initial="hidden"
@@ -401,7 +413,6 @@ export default function Hero() {
 
                 {/* CTA */}
                 <motion.div variants={fadeUp(0.52)} className="flex gap-4 flex-wrap justify-center">
-
                     <MagBtn className="relative px-8 py-3.5 rounded-xl font-bold text-[14px] text-white overflow-hidden group">
                         <motion.span
                             className="absolute inset-0 bg-linear-to-br from-violet-600 to-fuchsia-500"

@@ -1,9 +1,10 @@
 import { Syne } from 'next/font/google';
 import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import SmoothScrollProvider from './provider/SmoothScrolling';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import SmoothScrollProvider from '@/provider/SmoothScrolling';
+
 
 
 
