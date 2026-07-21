@@ -5,7 +5,7 @@ import { motion, useMotionValue, useTransform, useSpring, animate } from 'framer
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import image from '@/assets/Morsalin.png';
+import image from '@/assets/morsalinnew.png';
 import MeshBackground from './MeshBackground';
 
 gsap.registerPlugin(SplitText);

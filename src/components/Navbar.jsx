@@ -93,6 +93,13 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
+    const handleDownloadCV = () => {
+        window.open(
+            'https://drive.google.com/file/d/1X9JnMv0sOYW8xx8dzdGAPOkbLBIx7h-p/view?usp=sharing',
+            '_blank'
+        );
+    };
+
     /* Scroll-aware background */
     const { scrollY } = useScroll();
     useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 24));
@@ -164,10 +171,10 @@ export default function Navbar() {
 
                 {/* ── CTA + Hamburger ── */}
                 <div className="flex items-center gap-3">
-                    {/* CTA button */}
-                    <motion.a
-                        href="#contact"
-                        className="relative hidden sm:inline-flex px-5 py-2 rounded-xl font-mono font-semibold text-[13px] text-white overflow-hidden"
+                    {/* Resume CTA button */}
+                    <motion.button
+                        onClick={handleDownloadCV}
+                        className="relative hidden sm:inline-flex px-5 py-2 rounded-xl font-mono font-semibold text-[13px] text-white overflow-hidden cursor-pointer"
                         whileHover={{ scale: 1.04, y: -1 }}
                         whileTap={{ scale: 0.96 }}
                     >
@@ -188,7 +195,7 @@ export default function Navbar() {
                             transition={{ duration: 3, repeat: Infinity }}
                         />
                         <span className="relative z-10 flex items-center gap-1.5">
-                            Hire Me
+                            Resume
                             <motion.span
                                 animate={{ x: [0, 3, 0] }}
                                 transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -196,7 +203,7 @@ export default function Navbar() {
                                 ✦
                             </motion.span>
                         </span>
-                    </motion.a>
+                    </motion.button>
 
                     {/* Hamburger (mobile) */}
                     <div className="lg:hidden">
@@ -264,7 +271,7 @@ export default function Navbar() {
                                 >
                                     <span className="absolute inset-0 bg-linear-to-br from-violet-600 to-fuchsia-500" />
                                     <span className="relative z-10 flex items-center gap-2">
-                                        Hire Me ✦
+                                        Resume ✦
                                     </span>
                                 </a>
                             </motion.div>

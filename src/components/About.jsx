@@ -102,7 +102,7 @@ export default function About() {
   /* ✅ CV Download handler */
  const handleDownloadCV = () => {
     window.open(
-      'https://drive.google.com/file/d/1Kmty-icYOsGI9e7ijmxklId-fxwB_zRC/view?usp=sharing',
+      'https://drive.google.com/file/d/1X9JnMv0sOYW8xx8dzdGAPOkbLBIx7h-p/view?usp=sharing',
       '_blank'
     );
   };
