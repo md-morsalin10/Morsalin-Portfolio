@@ -17,9 +17,9 @@ export default function Home() {
       <TechMarquee />
       <About />
       <Skills />
-      <Experience />
-      <GithubStats />
       <Projects />
+      <GithubStats />
+      <Experience />
       <Services />
       <Contact />
     </div>
