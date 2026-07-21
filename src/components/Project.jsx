@@ -52,7 +52,7 @@ const ALL_PROJECTS = [
         link: 'https://github.com/md-morsalin10/NexusAi-Marketplace-Frontend',
         ServerLink: 'https://github.com/md-morsalin10/Nexus-Ai-Marketplace-Backend',
         live: 'https://nexus-ai-marketplace-frontend.vercel.app',
-        image: 'https://i.ibb.co.com/XxxDD72j/Screenshot-2026-05-04-153523.png',
+        image: 'https://i.ibb.co.com/kggXRYvZ/image.png',
         accent: '#10b981',
         tag: 'AI Agent',
     },

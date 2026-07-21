@@ -75,7 +75,7 @@ export default function Preloader() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2, duration: 0.5 }}
-                        className="mt-13 font-mono text-[12px] tracking-[0.3em] uppercase text-violet-400/70"
+                        className="mt-15 font-mono text-[12px] tracking-[0.3em] uppercase text-violet-400/70"
                     >
                         morsalin.dev
                     </motion.div>
