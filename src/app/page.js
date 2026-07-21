@@ -7,17 +7,21 @@ import Projects from "../components/Project";
 import Contact from "../components/Contact";
 import Experience from "../components/Experience";
 import TechMarquee from "../components/TechMarquee";
+import Skills from "../components/Skills";
+import GithubStats from "../components/GithubStats";
 
 export default function Home() {
   return (
     <div>
       <Hero />
-      <TechMarquee/>
-      <About/>
-      <Experience/>
+      <TechMarquee />
+      <About />
+      <Experience />
+      <Skills />
+      <GithubStats />
       <Services />
-      <Projects/>
-      <Contact/>
+      <Projects />
+      <Contact />
     </div>
   );
 }

@@ -46,19 +46,6 @@ const TIMELINE = [
     status:       'done',
     result:       'GPA: 4.86 / 5.00',
   },
-  {
-    type:         'challenge',
-    year:         '2026 (Ongoing)',
-    title:        '100 Days of Coding Challenge',
-    organization: 'Self-Driven',
-    location:     'Remote',
-    description:  'Consistently building and shipping daily updates to sharpen problem-solving skills, explore new libraries, and strengthen DSA fundamentals. Documenting progress publicly on GitHub.',
-    icon:         '⚡',
-    accent:       '#f97316',
-    tags:         ['DSA', 'Daily Build', 'Open Source', 'GitHub'],
-    status:       'active',
-    result:       null,
-  },
 ];
 
 const TYPE_LABEL = {

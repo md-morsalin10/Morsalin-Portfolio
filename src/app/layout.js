@@ -4,7 +4,8 @@ import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SmoothScrollProvider from '@/provider/SmoothScrolling';
-
+import Preloader from '../components/Preloader';
+import CustomCursor from '../components/CustomCursor';
 
 
 
@@ -49,6 +50,8 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body className="bg-[#060412] text-white overflow-x-hidden antialiased">
+        <Preloader />
+        <CustomCursor />
         {/*
           ✅ SmoothScrollProvider is 'use client' — safe to wrap here.
           Navbar and Footer are inside so Lenis covers the full page.
@@ -56,7 +59,7 @@ export default function RootLayout({ children }) {
         <SmoothScrollProvider>
           <Navbar />
           <main>
-            
+
             {children}
 
           </main>

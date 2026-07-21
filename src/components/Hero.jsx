@@ -14,17 +14,17 @@ gsap.registerPlugin(SplitText);
 const WORDS = ['MERN Stack', 'Full-Stack', 'React & Next.js', 'Node.js & Express', 'Frontend'];
 
 const techStack = [
-    { name: 'MongoDB',    dot: '#4db380' },
+    { name: 'MongoDB', dot: '#4db380' },
     { name: 'Express.js', dot: '#f0db4f' },
-    { name: 'React',      dot: '#61dafb' },
-    { name: 'Node.js',    dot: '#83cd29' },
-    { name: 'Next.js',    dot: '#4bb360' },
+    { name: 'React', dot: '#61dafb' },
+    { name: 'Node.js', dot: '#83cd29' },
+    { name: 'Next.js', dot: '#4bb360' },
     { name: 'JavaScript', dot: '#f7df1e' },
 ];
 
 const STATS = [
-    { value: 10,  suffix: '+', label: 'Projects' },
-    { value: 1,   suffix: '+', label: 'Yr Exp.' },
+    { value: 10, suffix: '+', label: 'Projects' },
+    { value: 1, suffix: '+', label: 'Yr Exp.' },
     { value: 100, suffix: '%', label: 'Dedication' },
 ];
 
@@ -56,9 +56,9 @@ const fadeSlide = (dir = 'up', delay = 0) => ({
 /* ─── Typewriter ─────────────────────────────────────────── */
 function useTypewriter(speed = 75, pause = 2200) {
     const [display, setDisplay] = useState('');
-    const [wIdx, setWIdx]       = useState(0);
-    const [cIdx, setCIdx]       = useState(0);
-    const [del, setDel]         = useState(false);
+    const [wIdx, setWIdx] = useState(0);
+    const [cIdx, setCIdx] = useState(0);
+    const [del, setDel] = useState(false);
 
     useEffect(() => {
         const word = WORDS[wIdx];
@@ -145,17 +145,17 @@ function Particle({ x, y, size, dur, delay }) {
 ═══════════════════════════════════════════════════════ */
 export default function Hero() {
     const typed = useTypewriter();
-    const [mounted, setMounted]           = useState(false);
-    const [particles, setParticles]       = useState([]);
+    const [mounted, setMounted] = useState(false);
+    const [particles, setParticles] = useState([]);
     const [statsStarted, setStatsStarted] = useState(false);
 
     /* GSAP refs */
-    const nameRef   = useRef(null);
-    const subRef    = useRef(null);
-    const descRef   = useRef(null);
-    const leftRef   = useRef(null);   // text column
-    const imageRef  = useRef(null);   // image column
-    const ringRef   = useRef(null);
+    const nameRef = useRef(null);
+    const subRef = useRef(null);
+    const descRef = useRef(null);
+    const leftRef = useRef(null);   // text column
+    const imageRef = useRef(null);   // image column
+    const ringRef = useRef(null);
     const badgeRefs = useRef([]);
 
     /* Orb parallax */
@@ -175,10 +175,10 @@ export default function Hero() {
     const rotY = useSpring(useTransform(tiltX, [-0.5, 0.5], [-10, 10]), { stiffness: 120, damping: 18 });
     const glowX = useTransform(tiltX, [-0.5, 0.5], ['0%', '100%']);
     const glowY = useTransform(tiltY, [-0.5, 0.5], ['0%', '100%']);
-    const onCardMove  = (e) => {
+    const onCardMove = (e) => {
         const r = e.currentTarget.getBoundingClientRect();
         tiltX.set((e.clientX - r.left) / r.width - 0.5);
-        tiltY.set((e.clientY - r.top)  / r.height - 0.5);
+        tiltY.set((e.clientY - r.top) / r.height - 0.5);
     };
     const onCardLeave = () => { tiltX.set(0); tiltY.set(0); };
 
@@ -203,7 +203,7 @@ export default function Hero() {
             /* LEFT text column — slides from left */
             tl.fromTo(leftRef.current,
                 { x: -70, opacity: 0, filter: 'blur(8px)' },
-                { x: 0,   opacity: 1, filter: 'blur(0px)', duration: 1 }
+                { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1 }
             );
 
             /* Name chars */
@@ -221,7 +221,7 @@ export default function Hero() {
                 const split = SplitText.create(subRef.current, { type: 'words' });
                 tl.fromTo(split.words,
                     { opacity: 0, y: 18, filter: 'blur(5px)' },
-                    { opacity: 1, y: 0,  filter: 'blur(0px)', duration: 0.55, stagger: 0.06 },
+                    { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.55, stagger: 0.06 },
                     '-=0.3'
                 );
             }
@@ -238,7 +238,7 @@ export default function Hero() {
             /* RIGHT image column — slides from right */
             tl.fromTo(imageRef.current,
                 { x: 90, opacity: 0, scale: 0.9, filter: 'blur(10px)' },
-                { x: 0,  opacity: 1, scale: 1,   filter: 'blur(0px)', duration: 1.1 },
+                { x: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.1 },
                 '-=1.2'   // runs mostly in parallel with text
             );
 
@@ -254,7 +254,7 @@ export default function Hero() {
                 if (!el) return;
                 tl.fromTo(el,
                     { opacity: 0, scale: 0.5, y: i === 2 ? 0 : 14, x: i === 2 ? 14 : 0 },
-                    { opacity: 1, scale: 1,   y: 0, x: 0, duration: 0.45, ease: 'back.out(2.2)' },
+                    { opacity: 1, scale: 1, y: 0, x: 0, duration: 0.45, ease: 'back.out(2.2)' },
                     `-=${i === 0 ? 0.1 : 0.3}`
                 );
             });

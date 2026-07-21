@@ -19,7 +19,7 @@ const SOCIALS = [
 ];
 
 /* ─── Easing ────────────────────────────────────────────── */
-const expo = [0.16, 1, 0.3, 1]; 
+const expo = [0.16, 1, 0.3, 1];
 
 const fadeUp = (delay = 0) => ({
     hidden: { opacity: 0, y: 38, filter: 'blur(8px)' },
