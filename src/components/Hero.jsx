@@ -12,6 +12,7 @@ gsap.registerPlugin(SplitText);
 
 /* ─── Data ──────────────────────────────────────────────── */
 const WORDS = ['MERN Stack', 'Full-Stack', 'React & Next.js', 'Node.js & Express', 'Frontend'];
+const DESIGNATIONS = ['MERN Stack Developer', 'Full-Stack Engineer', 'UI-Driven Web Builder'];
 
 const techStack = [
     { name: 'MongoDB', dot: '#4db380' },
@@ -77,6 +78,18 @@ function useTypewriter(speed = 75, pause = 2200) {
     }, [cIdx, del, wIdx, speed, pause]);
 
     return display;
+}
+
+function useAnimatedDesignation() {
+    const [index, setIndex] = useState(0);
+    useEffect(() => {
+        const id = setInterval(() => {
+            setIndex((prev) => (prev + 1) % DESIGNATIONS.length);
+        }, 2400);
+        return () => clearInterval(id);
+    }, []);
+
+    return DESIGNATIONS[index];
 }
 
 /* ─── Count-up ───────────────────────────────────────────── */
@@ -145,6 +158,7 @@ function Particle({ x, y, size, dur, delay }) {
 ═══════════════════════════════════════════════════════ */
 export default function Hero() {
     const typed = useTypewriter();
+    const designation = useAnimatedDesignation();
     const [mounted, setMounted] = useState(false);
     const [particles, setParticles] = useState([]);
     const [statsStarted, setStatsStarted] = useState(false);
@@ -329,6 +343,16 @@ export default function Hero() {
                             Full-Stack Magician
                         </p>
 
+                        <motion.p
+                            key={designation}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.35 }}
+                            className="mb-4 rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-2 text-sm font-semibold text-violet-200"
+                        >
+                            {designation}
+                        </motion.p>
+
                         {/* Name — GSAP SplitText */}
                         <h1
                             ref={nameRef}
@@ -423,7 +447,7 @@ export default function Hero() {
                         >
                             <MagBtn className="relative px-7 py-3.5 rounded-xl font-bold text-[14px] text-white overflow-hidden">
                                 <motion.span
-                                    className="absolute inset-0 bg-gradient-to-br from-violet-600 to-fuchsia-500"
+                                    className="absolute inset-0 bg-linear-to-br from-violet-600 to-fuchsia-500"
                                     animate={{ opacity: [1, 0.82, 1] }}
                                     transition={{ duration: 3, repeat: Infinity }}
                                 />
@@ -438,12 +462,17 @@ export default function Hero() {
                                 </span>
                             </MagBtn>
 
-                            <MagBtn className="px-7 py-3.5 border border-violet-500/35 text-violet-300 font-semibold text-[14px] rounded-xl hover:border-violet-400 hover:bg-violet-500/[0.08] transition-colors">
+                            <a
+                                href="https://drive.google.com/file/d/1X9JnMv0sOYW8xx8dzdGAPOkbLBIx7h-p/view?usp=sharing"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="px-7 py-3.5 border border-violet-500/35 text-violet-300 font-semibold text-[14px] rounded-xl hover:border-violet-400 hover:bg-violet-500/8 transition-colors"
+                            >
                                 <span className="flex items-center gap-2">
-                                    Contact Me
-                                    <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>→</motion.span>
+                                    Download Resume
+                                    <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>↓</motion.span>
                                 </span>
-                            </MagBtn>
+                            </a>
                         </motion.div>
 
                         {/* Stats */}

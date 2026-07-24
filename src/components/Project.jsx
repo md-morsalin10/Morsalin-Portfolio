@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useCallback } from 'react';
+import ProjectModal from './ProjectModal';
 
 /* ═══════════════════════════════════════════════════════════
    DATA — Total 6 Projects
@@ -19,6 +20,8 @@ const ALL_PROJECTS = [
         image: 'https://i.ibb.co.com/Nnp0HnFh/image.png',
         accent: '#ec4899',
         tag: 'Ebook',
+        challenges: ['Implemented secure role-based authentication and protected dashboard flows.', 'Balanced Stripe checkout with fast content delivery and polished UX on a large content platform.'],
+        improvements: ['Add real-time reading analytics and personalized reading recommendations.', 'Expand admin tools for content moderation and creator insights.'],
     },
     {
         id: '02',
@@ -31,6 +34,8 @@ const ALL_PROJECTS = [
         image: 'https://i.ibb.co.com/DD2rHjkV/image.png',
         accent: '#06b6d4',
         tag: 'Reservation',
+        challenges: ['Solved room availability conflicts with a robust reservation rule engine.', 'Managed secure JWT authentication and responsive booking experiences across devices.'],
+        improvements: ['Introduce live notifications for booking updates and waitlist handling.', 'Add analytics for peak usage and faculty scheduling insights.'],
     },
     {
         id: '03',
@@ -43,6 +48,8 @@ const ALL_PROJECTS = [
         image: 'https://i.ibb.co.com/V0qNtxH1/image.png',
         accent: '#eab308',
         tag: 'Real Estate',
+        challenges: ['Built a multi-role property platform with fast filtering and booking workflows.', 'Maintained consistency between complex UI states and backend API structure.'],
+        improvements: ['Add AI-based property recommendations and virtual tour previews.', 'Improve owner dashboards with richer lead and booking insights.'],
     },
     {
         id: '04',
@@ -55,6 +62,8 @@ const ALL_PROJECTS = [
         image: 'https://i.ibb.co.com/kggXRYvZ/image.png',
         accent: '#10b981',
         tag: 'AI Agent',
+        challenges: ['Integrated multiple AI capabilities into a marketplace while keeping the UX simple and trustworthy.', 'Ensured secure seller and buyer flows with flexible role-based access.'],
+        improvements: ['Deploy more intelligent agent workflows and smarter search filtering.', 'Introduce seller analytics, AI summaries, and richer payment controls.'],
     },
     {
         id: '05',
@@ -66,6 +75,8 @@ const ALL_PROJECTS = [
         image: 'https://i.ibb.co.com/XxxDD72j/Screenshot-2026-05-04-153523.png',
         accent: '#a855f7',
         tag: 'EdTech',
+        challenges: ['Shaped a fast, accessible learning experience around interactive course browsing.', 'Kept the product lightweight while serving modern educational workflows.'],
+        improvements: ['Add progress tracking, certificates, and personalized lesson recommendations.', 'Expand with instructor tools and real-time community features.'],
     },
     {
         id: '06',
@@ -77,6 +88,8 @@ const ALL_PROJECTS = [
         image: 'https://i.ibb.co.com/b5fnLgmy/keenkipper.png',
         accent: '#3b82f6',
         tag: 'Social Platform',
+        challenges: ['Designed a friendly social experience while keeping the interface simple and responsive.', 'Balanced reusable UI components with a lightweight stack for quick iteration.'],
+        improvements: ['Introduce social feeds, reminders, and richer interaction history.', 'Expand into a full community experience with private groups and notifications.'],
     },
 ];
 
@@ -106,7 +119,7 @@ const cardVariant = {
 /* ═══════════════════════════════════════════════════════════
    PREMIUM CARD COMPONENT
 ═══════════════════════════════════════════════════════════ */
-function ProjectCard({ project }) {
+function ProjectCard({ project, onOpen }) {
     const ref = useRef(null);
     const [hovered, setHovered] = useState(false);
 
@@ -235,14 +248,11 @@ function ProjectCard({ project }) {
 
                 {/* Footer Action Links */}
                 <div className="p-6 pt-0 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.06] mt-4 pt-4">
-                    {/* Live Demo Link */}
-                    <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noreferrer"
+                    <button
+                        onClick={() => onOpen(project)}
                         className="inline-flex items-center gap-1.5 font-semibold text-[13px] text-white hover:text-violet-300 transition-colors"
                     >
-                        <span>Live Demo</span>
+                        <span>View Details</span>
                         <motion.span
                             style={{ color: project.accent }}
                             animate={{ x: [0, 4, 0] }}
@@ -250,7 +260,7 @@ function ProjectCard({ project }) {
                         >
                             →
                         </motion.span>
-                    </a>
+                    </button>
 
                     {/* Repositories (Client & Server) */}
                     <div className="flex items-center gap-2 font-mono text-[11px]">
@@ -306,6 +316,7 @@ function ProjectCard({ project }) {
 ═══════════════════════════════════════════════════════════ */
 export default function Projects() {
     const [showAll, setShowAll] = useState(false);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     const visibleProjects = showAll ? ALL_PROJECTS : ALL_PROJECTS.slice(0, DEFAULT_VISIBLE);
 
@@ -360,7 +371,7 @@ export default function Projects() {
                 <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <AnimatePresence mode="popLayout">
                         {visibleProjects.map((p) => (
-                            <ProjectCard key={p.id} project={p} />
+                            <ProjectCard key={p.id} project={p} onOpen={setSelectedProject} />
                         ))}
                     </AnimatePresence>
                 </motion.div>
@@ -387,6 +398,12 @@ export default function Projects() {
                     </motion.div>
                 )}
             </div>
+
+            <ProjectModal
+                project={selectedProject}
+                isOpen={Boolean(selectedProject)}
+                onClose={() => setSelectedProject(null)}
+            />
         </section>
     );
 }

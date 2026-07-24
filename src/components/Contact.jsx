@@ -4,11 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef } from 'react';
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md';
 import { FaLinkedin, FaGithub, FaFacebook } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa6';
 
 /* ─── Data ─────────────────────────────────────────────── */
 const INFO = [
     { icon: MdEmail, label: 'Email', val: 'morsalinafsan501921@gamil.com', href: 'mailto:morsalinafsan501921@gamil.com', accent: '#a855f7' },
     { icon: MdPhone, label: 'Phone', val: '+880 1842007859', href: 'tel:+8801842007859', accent: '#22c55e' },
+    { icon: FaWhatsapp, label: 'WhatsApp', val: 'Chat on WhatsApp', href: 'https://wa.me/8801842007859', accent: '#25D366' },
     { icon: MdLocationOn, label: 'Location', val: 'Rangpur, Bangladesh', href: '#', accent: '#3b82f6' },
 ];
 
@@ -180,14 +182,14 @@ export default function Contact() {
                                 Contact Info
                             </p>
 
-                            <motion.div variants={stagger(0.15)} className="space-y-4">
+                            <motion.div variants={stagger(0.15)} className="grid gap-3 sm:grid-cols-2">
                                 {INFO.map(({ icon: Icon, label, val, href, accent }) => (
                                     <motion.a
                                         key={label}
                                         href={href}
                                         variants={itemVariant}
                                         whileHover={{ x: 4 }}
-                                        className="flex items-center gap-4 group"
+                                        className="flex items-center gap-3 group rounded-2xl border border-white/8 bg-white/5 p-3 min-w-0"
                                     >
                                         <motion.div
                                             className="w-10 h-10 rounded-xl flex items-center justify-center border shrink-0"
@@ -197,9 +199,11 @@ export default function Contact() {
                                         >
                                             <Icon size={17} style={{ color: accent }} />
                                         </motion.div>
-                                        <div>
+                                        <div className="flex min-w-0 flex-1 flex-col">
                                             <p className="font-mono text-[10px] tracking-widest uppercase text-gray-600">{label}</p>
-                                            <p className="text-white text-[13px] font-medium group-hover:text-violet-300 transition-colors">{val}</p>
+                                            <p className={`text-white text-[13px] sm:text-sm font-medium group-hover:text-violet-300 transition-colors break-words ${label === 'Email' ? 'truncate' : ''}`}>
+                                                {val}
+                                            </p>
                                         </div>
                                     </motion.a>
                                 ))}

@@ -123,45 +123,46 @@ export default function Skills() {
                 </motion.div>
 
                 {/* Skills Grid */}
-                <div className="flex flex-col gap-12 md:gap-16">
+                <div className="flex flex-col gap-6 md:gap-8">
                     {SKILL_CATEGORIES.map((category, idx) => (
                         <motion.div
                             key={category.title}
                             initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
                             variants={stagger}
+                            className="rounded-2xl border border-purple-900/30 bg-[#12121e]/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)_inset]"
                         >
                             {/* Category Title */}
                             <motion.h3
                                 variants={fadeUp}
-                                className="flex items-center gap-4 text-xl font-bold text-white mb-8"
+                                className="flex items-center gap-4 text-xl font-bold text-white"
                             >
-                                <span className="text-[14px] px-3 py-1 rounded-full border border-white/10 font-mono" style={{ backgroundColor: `${category.accent}15`, color: category.accent }}>
+                                <span className="rounded-full border border-white/10 px-3 py-1 font-mono text-[14px]" style={{ backgroundColor: `${category.accent}15`, color: category.accent }}>
                                     0{idx + 1}
                                 </span>
                                 {category.title}
-                                <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                                <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
                             </motion.h3>
 
                             {/* Skills Row */}
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                            <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                                 {category.skills.map((skill) => (
                                     <motion.div
                                         key={skill.name}
                                         variants={fadeUp}
                                         whileHover={{ scale: 1.05, y: -4 }}
-                                        className="group relative flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-[#0c0818] border border-white/5 transition-all duration-300"
+                                        className="group relative flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/5 bg-[#0c0818] p-5 transition-all duration-300"
                                     >
                                         {/* Hover Glow */}
                                         <div
-                                            className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                                            className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                                             style={{ boxShadow: `0 0 20px ${skill.color}30, inset 0 0 10px ${skill.color}15`, border: `1px solid ${skill.color}50` }}
                                         />
 
                                         <skill.icon
-                                            className="w-10 h-10 transition-transform duration-300 group-hover:scale-110"
+                                            className="h-10 w-10 transition-transform duration-300 group-hover:scale-110"
                                             style={{ color: skill.color }}
                                         />
-                                        <span className="font-semibold text-[13px] text-gray-400 group-hover:text-white transition-colors duration-300">
+                                        <span className="font-semibold text-[13px] text-gray-400 transition-colors duration-300 group-hover:text-white">
                                             {skill.name}
                                         </span>
                                     </motion.div>

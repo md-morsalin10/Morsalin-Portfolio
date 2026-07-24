@@ -19,6 +19,13 @@ const cards = [
   { icon: '🎨', label: 'Passion',        val: 'Modern UI & Animations'  },
 ];
 
+const journeyPoints = [
+  'My journey into programming began with curiosity about how websites and apps come alive, and that spark quickly became a full-time passion.',
+  'I enjoy transforming ideas into sleek, performant products by blending thoughtful design, strong logic, and a deep focus on user experience.',
+  'Outside of coding, I stay active through sports, enjoy building and scaling models, and love exploring creative hobbies that keep my mind fresh.',
+];
+
+const hobbies = ['⚽ Sports', '🛠️ Model Building', '🎧 Music', '📚 Reading'];
 const skills = ['Next.js', 'React', 'Node.js', 'MongoDB', 'Express', 'Tailwind'];
 
 const expo = [0.16, 1, 0.3, 1];
@@ -235,7 +242,7 @@ export default function About() {
 
             <motion.p
               variants={fadeUp(0.08)}
-              className="text-gray-400 text-[15px] leading-[1.85] mb-8 max-w-xl"
+              className="text-gray-400 text-[15px] leading-[1.85] mb-6 max-w-xl"
             >
               I&apos;m an aspiring{' '}
               <span className="text-violet-200 font-medium">Software Engineer</span>{' '}
@@ -245,6 +252,29 @@ export default function About() {
               <span className="text-violet-200 font-medium">MERN Stack</span>{' '}
               development — focused on premium, user-centric experiences with clean code and modern UI/UX.
             </motion.p>
+
+            <motion.div variants={fadeUp(0.12)} className="mb-8 rounded-3xl border border-violet-500/15 bg-violet-500/8 p-5">
+              <h3 className="mb-3 text-lg font-semibold text-white">My Journey & Passion</h3>
+              <ul className="space-y-2 text-sm leading-7 text-gray-300">
+                {journeyPoints.map((point) => (
+                  <li key={point} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div variants={fadeUp(0.16)} className="mb-8">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-violet-400">Outside of Coding</p>
+              <div className="flex flex-wrap gap-2">
+                {hobbies.map((hobby) => (
+                  <span key={hobby} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300">
+                    {hobby}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
 
             {/* Skills */}
             <motion.div
