@@ -110,12 +110,12 @@ export default function TechMarquee() {
 
     if (!hasMounted) {
         return (
-            <section className="relative py-24 bg-[#060412] overflow-hidden min-h-150" />
+            <section className="relative py-24 bg-transparent overflow-hidden min-h-150" />
         );
     }
 
     return (
-        <section className="relative py-24 bg-[#060412] overflow-hidden min-h-150">
+        <section className="relative py-24 bg-[#060412]/40 overflow-hidden min-h-150">
             {/* Ambient Glow & Grid */}
             <motion.div
                 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-62.5 rounded-full"

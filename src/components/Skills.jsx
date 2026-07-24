@@ -88,7 +88,7 @@ const fadeUp = {
 
 export default function Skills() {
     return (
-        <section id="skills" className="relative py-28 px-6 bg-[#060412] overflow-hidden">
+        <section id="skills" className="relative py-28 px-6 bg-[#060412]/40 overflow-hidden">
             {/* Ambient Background Glows */}
             <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]" />
             <div className="pointer-events-none absolute bottom-1/4 -right-32 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px]" />

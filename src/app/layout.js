@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import SmoothScrollProvider from '@/provider/SmoothScrolling';
 import Preloader from '../components/Preloader';
 import CustomCursor from '../components/CustomCursor';
+import MeshBackground from '../components/MeshBackground';
 
 
 
@@ -49,22 +50,27 @@ export default function RootLayout({ children }) {
          browser extensions modifying the DOM */
       suppressHydrationWarning
     >
-      <body className="bg-[#060412] text-white overflow-x-hidden antialiased">
-        <Preloader />
-        <CustomCursor />
-        {/*
-          ✅ SmoothScrollProvider is 'use client' — safe to wrap here.
-          Navbar and Footer are inside so Lenis covers the full page.
-        */}
-        <SmoothScrollProvider>
-          <Navbar />
-          <main>
-
-            {children}
-
-          </main>
-          <Footer />
-        </SmoothScrollProvider>
+      <body className="min-h-screen bg-[#060412] text-white overflow-x-hidden antialiased">
+        <div className="relative isolate min-h-screen bg-[#060412]">
+          <div className="fixed inset-0 pointer-events-none z-0">
+            <MeshBackground />
+          </div>
+          <div className="relative z-10">
+            <Preloader />
+            <CustomCursor />
+            {/*
+              ✅ SmoothScrollProvider is 'use client' — safe to wrap here.
+              Navbar and Footer are inside so Lenis covers the full page.
+            */}
+            <SmoothScrollProvider>
+              <Navbar />
+              <main>
+                {children}
+              </main>
+              <Footer />
+            </SmoothScrollProvider>
+          </div>
+        </div>
       </body>
     </html>
   );

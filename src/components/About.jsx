@@ -115,7 +115,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="relative py-28 px-6 bg-[#060412] overflow-hidden">
+    <section id="about" className="relative py-28 px-6 bg-[#060412]/40 overflow-hidden">
 
       {/* Orbs */}
       <motion.div

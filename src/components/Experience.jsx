@@ -290,7 +290,7 @@ function TimelineItem({ item, index, isLast }) {
 /* ─── Main ───────────────────────────────────────────────── */
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-28 px-6 bg-[#060412] overflow-hidden">
+    <section id="experience" className="relative py-28 px-6 bg-[#060412]/40 overflow-hidden">
 
       {/* Orbs */}
       <motion.div

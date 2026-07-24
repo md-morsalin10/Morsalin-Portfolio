@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import image from '@/assets/morsalinnew.png';
-import MeshBackground from './MeshBackground';
 
 gsap.registerPlugin(SplitText);
 
@@ -279,15 +278,14 @@ export default function Hero() {
         return () => ctx.revert();
     }, [mounted]);
 
-    if (!mounted) return <section className="relative min-h-screen bg-[#060412]" />;
+    if (!mounted) return <section className="relative min-h-screen bg-transparent" />;
 
     return (
         <motion.section
-            className="relative min-h-screen bg-[#060412] flex items-center overflow-hidden px-6 md:px-12 lg:px-20"
+            className="relative min-h-screen bg-transparent flex items-center overflow-hidden px-6 md:px-12 lg:px-20"
             onMouseMove={onMouse}
             style={{ perspective: 1200 }}
         >
-            <MeshBackground />
 
             {particles.map(p => <Particle key={p.id} {...p} />)}
 

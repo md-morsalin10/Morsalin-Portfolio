@@ -47,7 +47,7 @@ export default function Footer() {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="relative bg-[#060412] overflow-hidden">
+        <footer className="relative bg-[#060412]/40 overflow-hidden">
 
             {/* Top gradient divider */}
             <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-violet-500/40 to-transparent" />

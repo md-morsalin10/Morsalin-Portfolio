@@ -218,7 +218,7 @@ function ServiceCard({ service, index }) {
 /* ─── Main Component ────────────────────────────────────── */
 export default function Services() {
   return (
-    <section id="services" className="relative py-28 px-6 bg-[#060412] overflow-hidden">
+    <section id="services" className="relative py-28 px-6 bg-[#060412]/40 overflow-hidden">
       {/* Ambient Orbs */}
       <motion.div
         className="pointer-events-none absolute -top-10 right-0 w-[500px] h-[500px] rounded-full"

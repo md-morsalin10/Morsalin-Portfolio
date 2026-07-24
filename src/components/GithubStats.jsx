@@ -111,7 +111,7 @@ export default function GithubStats() {
   ];
 
   return (
-    <section id="github" className="relative py-20 px-6 bg-[#060412] overflow-hidden">
+    <section id="github" className="relative py-20 px-6 bg-[#060412]/40 overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
