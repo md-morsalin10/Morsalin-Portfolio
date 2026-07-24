@@ -10,7 +10,7 @@ import { FaWhatsapp } from 'react-icons/fa6';
 
 /* ─── Data ─────────────────────────────────────────────── */
 const INFO = [
-    { icon: MdEmail, label: 'Email', val: 'morsalinafsan501921@gmail.com', href: 'mailto:morsalinafsan501921@gamil.com', accent: '#a855f7' },
+    { icon: MdEmail, label: 'Email', val: 'morsalinafsan501921@gmail.com', href: 'mailto:morsalinafsan501921@gmail.com', accent: '#a855f7' },
     { icon: MdPhone, label: 'Phone', val: '+880 1842007859', href: 'tel:+8801842007859', accent: '#22c55e' },
     { icon: FaWhatsapp, label: 'WhatsApp', val: 'Chat on WhatsApp', href: 'https://wa.me/8801842007859', accent: '#25D366' },
     { icon: MdLocationOn, label: 'Location', val: 'Rangpur, Bangladesh', href: '#', accent: '#3b82f6' },
