@@ -43,7 +43,10 @@ function AnimatedNumber({ value, suffix = "" }) {
     if (!isInView) return;
 
     const end = parseInt(value, 10);
-    if (isNaN(end)) return;
+    if (isNaN(end) || end === 0) {
+      setCount(0);
+      return;
+    }
 
     const duration = 1500;
     const frameTime = 1000 / 60;
@@ -77,105 +80,43 @@ function AnimatedNumber({ value, suffix = "" }) {
 export default function GithubStats() {
   const username = "md-morsalin10";
   
-  // ০ দিয়ে শুরু করা হয়েছে যাতে স্ট্যাটিক না মনে হয়
   const [stats, setStats] = useState({
     repos: 0,
     stars: 0,
     contributions: 0,
-    streak: 0,
+    streak: 66,
   });
 
   const [topLanguages, setTopLanguages] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ল্যাঙ্গুয়েজের কালার ম্যাপ
-  const languageColors = {
-    JavaScript: '#f7df1e',
-    TypeScript: '#3178c6',
-    HTML: '#e34f26',
-    CSS: '#563d7c',
-    'C++': '#f34b7d',
-    Python: '#3572A5',
-  };
+useEffect(() => {
+  async function fetchGithubData() {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/github');
+      if (!res.ok) throw new Error("API Fetch Failed");
 
- useEffect(() => {
-    async function fetchGithubData() {
-      setLoading(true);
-      try {
-        // ১. GitHub Official User & Repos API (নিরাপদ সমান্তরাল রিকোয়েস্ট)
-        const [userRes, reposRes] = await Promise.allSettled([
-          fetch(`https://api.github.com/users/${username}`),
-          fetch(`https://api.github.com/users/${username}/repos?per_page=100`),
-        ]);
+      const data = await res.json();
 
-        let totalRepos = 0;
-        let totalStars = 0;
-        let langStats = {};
-
-        if (userRes.status === 'fulfilled' && userRes.value.ok) {
-          const userData = await userRes.value.json();
-          totalRepos = userData.public_repos || 0;
-        }
-
-        if (reposRes.status === 'fulfilled' && reposRes.value.ok) {
-          const repos = await reposRes.value.json();
-          if (Array.isArray(repos)) {
-            repos.forEach((repo) => {
-              totalStars += repo.stargazers_count || 0;
-
-              if (repo.language) {
-                langStats[repo.language] = (langStats[repo.language] || 0) + 1;
-              }
-            });
-
-            // Top Languages Calculations
-            const totalLangRepos = Object.values(langStats).reduce((a, b) => a + b, 0);
-            if (totalLangRepos > 0) {
-              const formattedLangs = Object.keys(langStats)
-                .map((lang) => ({
-                  name: lang,
-                  percent: Math.round((langStats[lang] / totalLangRepos) * 100),
-                  color: languageColors[lang] || '#a855f7',
-                }))
-                .sort((a, b) => b.percent - a.percent)
-                .slice(0, 4);
-
-              setTopLanguages(formattedLangs);
-            }
-          }
-        }
-
-        // ২. Contributions & Streak Data (CORS Safe Fetching)
-        let totalContribs = 0;
-        try {
-          const contribRes = await fetch(`https://github-contributions-api.joshmd.esp.br/v4/${username}?y=all`);
-          if (contribRes.ok) {
-            const contribData = await contribRes.json();
-            if (contribData && contribData.total) {
-              totalContribs = Object.values(contribData.total).reduce((a, b) => a + b, 0);
-            }
-          }
-        } catch (err) {
-          console.warn("Contributions API fetch failed, using fallback.", err);
-        }
-
-        // স্টেটে সেফলি সেট করা
-        setStats({
-          repos: totalRepos,
-          stars: totalStars,
-          contributions: totalContribs || 667, // Fallback if API fails
-          streak: 66, // Safe static streak value to prevent Heroku fetch error
-        });
-
-      } catch (error) {
-        console.error("GitHub Data Fetching Error:", error);
-      } finally {
-        setLoading(false);
+      if (data && !data.error) {
+        setTopLanguages(data.topLanguages || []);
+        setStats((prev) => ({
+          ...prev,
+          repos: data.repos || prev.repos,
+          stars: data.stars || prev.stars,
+          contributions: data.contributions || prev.contributions,
+        }));
       }
+    } catch (error) {
+      console.error("GitHub Data Fetching Error:", error);
+    } finally {
+      setLoading(false);
     }
+  }
 
-    fetchGithubData();
-  }, [username]);
+  fetchGithubData();
+}, []);
 
   return (
     <section id="github" className="relative py-20 px-6 bg-[#060412]/40 overflow-hidden">
