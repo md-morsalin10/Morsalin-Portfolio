@@ -24,7 +24,7 @@ const techStack = [
 
 const STATS = [
     { value: 10, suffix: '+', label: 'Projects' },
-    { value: 1, suffix: '+', label: 'Yr Exp.' },
+    { value: 100, suffix: '%', label: 'PASSION' },
     { value: 100, suffix: '%', label: 'Dedication' },
 ];
 

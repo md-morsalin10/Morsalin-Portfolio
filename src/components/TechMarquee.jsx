@@ -177,7 +177,7 @@ export default function TechMarquee() {
                 {[
                     { num: '16+', label: 'Technologies' },
                     { num: '10+', label: 'Projects Built' },
-                    { num: '1yr+', label: 'Experience' },
+                    { num: '1yr+', label: 'CODING JOURNEY' },
                 ].map(({ num, label }) => (
                     <motion.div
                         key={label}
