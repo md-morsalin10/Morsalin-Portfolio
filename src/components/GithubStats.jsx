@@ -42,11 +42,10 @@ function AnimatedNumber({ value, suffix = "" }) {
   useEffect(() => {
     if (!isInView) return;
 
-    let start = 0;
     const end = parseInt(value, 10);
     if (isNaN(end)) return;
 
-    const duration = 1500; // 1.5 Seconds
+    const duration = 1500;
     const frameTime = 1000 / 60;
     const totalFrames = Math.round(duration / frameTime);
     let frame = 0;
@@ -54,7 +53,6 @@ function AnimatedNumber({ value, suffix = "" }) {
     const timer = setInterval(() => {
       frame++;
       const progress = frame / totalFrames;
-      // Ease out expo formula for smooth slowing down at the end
       const currentCount = Math.round(end * (1 - Math.pow(2, -10 * progress)));
       
       setCount(currentCount);
@@ -78,37 +76,106 @@ function AnimatedNumber({ value, suffix = "" }) {
 
 export default function GithubStats() {
   const username = "md-morsalin10";
+  
+  // ০ দিয়ে শুরু করা হয়েছে যাতে স্ট্যাটিক না মনে হয়
   const [stats, setStats] = useState({
-    repos: 78,
-    stars: 12,
-    contributions: 646,
-    streak: 66,
+    repos: 0,
+    stars: 0,
+    contributions: 0,
+    streak: 0,
   });
 
-  useEffect(() => {
+  const [topLanguages, setTopLanguages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // ল্যাঙ্গুয়েজের কালার ম্যাপ
+  const languageColors = {
+    JavaScript: '#f7df1e',
+    TypeScript: '#3178c6',
+    HTML: '#e34f26',
+    CSS: '#563d7c',
+    'C++': '#f34b7d',
+    Python: '#3572A5',
+  };
+
+ useEffect(() => {
     async function fetchGithubData() {
+      setLoading(true);
       try {
-        const res = await fetch(`https://api.github.com/users/${username}`);
-        if (res.ok) {
-          const data = await res.json();
-          setStats((prev) => ({
-            ...prev,
-            repos: data.public_repos || prev.repos,
-          }));
+        // ১. GitHub Official User & Repos API (নিরাপদ সমান্তরাল রিকোয়েস্ট)
+        const [userRes, reposRes] = await Promise.allSettled([
+          fetch(`https://api.github.com/users/${username}`),
+          fetch(`https://api.github.com/users/${username}/repos?per_page=100`),
+        ]);
+
+        let totalRepos = 0;
+        let totalStars = 0;
+        let langStats = {};
+
+        if (userRes.status === 'fulfilled' && userRes.value.ok) {
+          const userData = await userRes.value.json();
+          totalRepos = userData.public_repos || 0;
         }
+
+        if (reposRes.status === 'fulfilled' && reposRes.value.ok) {
+          const repos = await reposRes.value.json();
+          if (Array.isArray(repos)) {
+            repos.forEach((repo) => {
+              totalStars += repo.stargazers_count || 0;
+
+              if (repo.language) {
+                langStats[repo.language] = (langStats[repo.language] || 0) + 1;
+              }
+            });
+
+            // Top Languages Calculations
+            const totalLangRepos = Object.values(langStats).reduce((a, b) => a + b, 0);
+            if (totalLangRepos > 0) {
+              const formattedLangs = Object.keys(langStats)
+                .map((lang) => ({
+                  name: lang,
+                  percent: Math.round((langStats[lang] / totalLangRepos) * 100),
+                  color: languageColors[lang] || '#a855f7',
+                }))
+                .sort((a, b) => b.percent - a.percent)
+                .slice(0, 4);
+
+              setTopLanguages(formattedLangs);
+            }
+          }
+        }
+
+        // ২. Contributions & Streak Data (CORS Safe Fetching)
+        let totalContribs = 0;
+        try {
+          const contribRes = await fetch(`https://github-contributions-api.joshmd.esp.br/v4/${username}?y=all`);
+          if (contribRes.ok) {
+            const contribData = await contribRes.json();
+            if (contribData && contribData.total) {
+              totalContribs = Object.values(contribData.total).reduce((a, b) => a + b, 0);
+            }
+          }
+        } catch (err) {
+          console.warn("Contributions API fetch failed, using fallback.", err);
+        }
+
+        // স্টেটে সেফলি সেট করা
+        setStats({
+          repos: totalRepos,
+          stars: totalStars,
+          contributions: totalContribs || 667, // Fallback if API fails
+          streak: 66, // Safe static streak value to prevent Heroku fetch error
+        });
+
       } catch (error) {
-        console.error("GitHub API Error:", error);
+        console.error("GitHub Data Fetching Error:", error);
+      } finally {
+        setLoading(false);
       }
     }
-    fetchGithubData();
-  }, []);
 
-  const topLanguages = [
-    { name: 'JavaScript', percent: 45, color: '#f7df1e' },
-    { name: 'TypeScript', percent: 25, color: '#3178c6' },
-    { name: 'HTML/CSS', percent: 18, color: '#e34f26' },
-    { name: 'Other', percent: 12, color: '#a855f7' },
-  ];
+    fetchGithubData();
+  }, [username]);
 
   return (
     <section id="github" className="relative py-20 px-6 bg-[#060412]/40 overflow-hidden">
@@ -173,7 +240,7 @@ export default function GithubStats() {
                 <div>
                   <p className="text-xs text-gray-400">Public Repos</p>
                   <p className="text-xl font-bold text-white">
-                    <AnimatedNumber value={stats.repos} />
+                    {loading ? "..." : <AnimatedNumber value={stats.repos} />}
                   </p>
                 </div>
               </motion.div>
@@ -183,7 +250,7 @@ export default function GithubStats() {
                 <div>
                   <p className="text-xs text-gray-400">Total Commits</p>
                   <p className="text-xl font-bold text-white">
-                    <AnimatedNumber value={stats.contributions} suffix="+" />
+                    {loading ? "..." : <AnimatedNumber value={stats.contributions} suffix="+" />}
                   </p>
                 </div>
               </motion.div>
@@ -193,7 +260,7 @@ export default function GithubStats() {
                 <div>
                   <p className="text-xs text-gray-400">Total Stars</p>
                   <p className="text-xl font-bold text-white">
-                    <AnimatedNumber value={stats.stars} />
+                    {loading ? "..." : <AnimatedNumber value={stats.stars} />}
                   </p>
                 </div>
               </motion.div>
@@ -203,7 +270,7 @@ export default function GithubStats() {
                 <div>
                   <p className="text-xs text-gray-400">Contributions</p>
                   <p className="text-xl font-bold text-white">
-                    <AnimatedNumber value={stats.contributions} />
+                    {loading ? "..." : <AnimatedNumber value={stats.contributions} />}
                   </p>
                 </div>
               </motion.div>
@@ -216,7 +283,7 @@ export default function GithubStats() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp(0.15)}
-            className="p-6 rounded-3xl border border-white/10 bg-[#0c0818]/80 backdrop-blur-md overflow-hidden relative group hover:border-fuchsia-500/30 transition-colors duration-500"
+            className="p-6 rounded-3xl border border-white/10 bg-[#0c0818]/80 backdrop-blur-md overflow-hidden relative group hover:border-fuchsia-500/30 transition-colors duration-500 min-h-[220px]"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
@@ -225,32 +292,42 @@ export default function GithubStats() {
               Top Languages
             </h3>
             
-            <div className="space-y-4">
-              {topLanguages.map((lang, idx) => (
-                <div key={lang.name}>
-                  <div className="flex justify-between text-xs mb-1.5">
-                    <span className="text-gray-300 font-medium">{lang.name}</span>
-                    <span className="text-gray-400 font-mono">
-                      <AnimatedNumber value={lang.percent} suffix="%" />
-                    </span>
+            {loading ? (
+              <div className="space-y-4 animate-pulse">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="h-4 bg-white/5 rounded-full w-full" />
+                ))}
+              </div>
+            ) : topLanguages.length > 0 ? (
+              <div className="space-y-4">
+                {topLanguages.map((lang, idx) => (
+                  <div key={lang.name}>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-gray-300 font-medium">{lang.name}</span>
+                      <span className="text-gray-400 font-mono">
+                        <AnimatedNumber value={lang.percent} suffix="%" />
+                      </span>
+                    </div>
+                    <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${lang.percent}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: 0.2 + idx * 0.1, ease: expo }}
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: lang.color }}
+                      />
+                    </div>
                   </div>
-                  <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${lang.percent}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, delay: 0.2 + idx * 0.1, ease: expo }}
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: lang.color }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-xs text-gray-500">No language data available.</p>
+            )}
           </motion.div>
         </div>
         
-        {/* Contribution Streak (Full Width) */}
+        {/* Contribution Streak */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -274,14 +351,14 @@ export default function GithubStats() {
           >
             <motion.div variants={cardItem} className="p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors duration-300">
               <p className="text-2xl font-black text-violet-400">
-                <AnimatedNumber value={stats.contributions} />
+                {loading ? "..." : <AnimatedNumber value={stats.contributions} />}
               </p>
               <p className="text-[10px] md:text-[11px] text-gray-400 uppercase tracking-wider mt-1">Total Contributions</p>
             </motion.div>
 
             <motion.div variants={cardItem} className="p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors duration-300">
               <p className="text-2xl md:text-3xl font-black text-fuchsia-400">
-                <AnimatedNumber value={stats.streak} />
+                {loading ? "..." : <AnimatedNumber value={stats.streak} />}
               </p>
               <p className="text-[10px] md:text-[11px] text-gray-400 uppercase tracking-wider mt-1">Longest Streak</p>
             </motion.div>
